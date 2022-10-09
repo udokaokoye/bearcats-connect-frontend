@@ -1,0 +1,31 @@
+.main_container {
+
+    .app_wrapper {
+        width: 90%;
+        // background: red;
+        // margin-top: 500px;
+        margin: 0 auto;
+        // background: green;
+        display: flex;
+        justify-content: space-between;
+
+        .main_application {
+            width: 60%;
+            height: 89vh;
+            // background: green;
+            margin-top: 5vh;
+            overflow-y: scroll;
+        }
+
+        .leftBar, .rightBar {
+            margin-top: 5vh;
+            width: 20%;
+            height: 89vh;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+
+    }
+}

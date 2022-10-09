@@ -1,0 +1,27 @@
+.main_container .app_wrapper {
+  width: 90%;
+  margin: 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.main_container .app_wrapper .main_application {
+  width: 60%;
+  height: 89vh;
+  margin-top: 5vh;
+  overflow-y: scroll;
+}
+
+.main_container .app_wrapper .leftBar, .main_container .app_wrapper .rightBar {
+  margin-top: 5vh;
+  width: 20%;
+  height: 89vh;
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+}
+/*# sourceMappingURL=index.css.map */

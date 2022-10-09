@@ -1,1 +1,148 @@
-/* No CSS *//*# sourceMappingURL=Navigation.css.map */
+.navigation {
+  width: 100%;
+  height: 6vh;
+  background: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+.navigation .nav_logo_home {
+  width: 40%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.navigation .nav_logo_home .nav_logo {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer;
+}
+
+.navigation .nav_logo_home .nav_logo .nav_img {
+  width: 10%;
+  height: 100%;
+  background: url("../Assets//Images/Cincinnati_Bearcats_logo.svg.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.navigation .nav_logo_home .nav_logo span {
+  font-size: 1.5rem;
+  margin-left: 10px;
+  font-weight: bold;
+}
+
+.navigation .nav_logo_home .nav_home_btn {
+  width: 100px;
+  height: 40px;
+  border-radius: 8px;
+  border: 3px solid #000;
+  background: rgba(255, 0, 0, 0.914);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.navigation .nav_center_search {
+  width: 400px;
+  height: 100%;
+  background: #e5e5e5;
+  border-radius: 9px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-left: auto;
+  overflow: hidden;
+}
+
+.navigation .nav_center_search .search_icn {
+  width: 60px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+}
+
+.navigation .nav_center_search .search_input {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.navigation .nav_center_search .search_input input {
+  background: transparent;
+  border: none;
+  width: 100%;
+  height: 100%;
+  padding-left: 10px;
+}
+
+.navigation .nav_center_search .search_input input:focus {
+  outline: none;
+}
+
+.navigation .nav_user_account {
+  width: 10%;
+  height: 100%;
+  margin-left: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.navigation .nav_user_account .user_image {
+  width: 40px;
+  height: 40px;
+  background: brown;
+  border-radius: 50%;
+}
+
+.navigation .nav_user_account .user_name {
+  margin-left: 15px;
+  margin-right: 15px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.navigation .nav_user_account .chevron_icn {
+  cursor: pointer;
+}
+/*# sourceMappingURL=Navigation.css.map */
