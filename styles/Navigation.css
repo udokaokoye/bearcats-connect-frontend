@@ -131,7 +131,10 @@
 .navigation .nav_user_account .user_image {
   width: 40px;
   height: 40px;
-  background: brown;
+  background: url("https://images.unsplash.com/photo-1584119164246-461d43e9bab3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
   border-radius: 50%;
 }
 
