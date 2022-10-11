@@ -1,3 +1,4 @@
+import React from 'react'
 import LeftSideBar from '../Components/LeftSideBar'
 import Navigation from '../Components/Navigation'
 import NewPost from '../Components/NewPost'
@@ -65,7 +66,13 @@ export default function Home() {
             <br />
             <br />
             <br />
-          <Post />
+          {
+            demoPosts.map((post) => (
+              <React.Fragment>
+                <Post post={post} />
+              </React.Fragment>
+            ))
+          }
         </div>
         <div className="rightBar"></div>
       </div>
