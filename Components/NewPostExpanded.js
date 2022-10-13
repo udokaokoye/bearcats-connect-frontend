@@ -20,6 +20,8 @@ const NewPostExpanded = ({setnewPostActive}) => {
         <div className="post_entry">
             <textarea contentEditable={true} className='post_entry_field' placeholder="what's on your mind, User?"></textarea>
         </div>
+
+        <button className='postBtn'>Post</button>
     </div>
   )
 }

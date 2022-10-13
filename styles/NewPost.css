@@ -86,9 +86,17 @@
 
 .newPostExpandedContainer {
   width: 500px;
-  height: 500px;
+  height: 400px;
   background: #ececec;
   border-radius: 10px;
+  padding: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .newPostExpandedContainer .header_bar {
@@ -129,7 +137,6 @@
 }
 
 .newPostExpandedContainer .userProfileInfo {
-  padding: 10px;
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -162,7 +169,7 @@
 }
 
 .newPostExpandedContainer .post_entry {
-  padding: 10px;
+  margin-top: 20px;
 }
 
 .newPostExpandedContainer .post_entry_field {
@@ -192,5 +199,20 @@
 .newPostExpandedContainer .post_entry_field::placeholder {
   color: #747474;
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.newPostExpandedContainer .post_entry_field:focus {
+  outline: none;
+}
+
+.newPostExpandedContainer .postBtn {
+  width: 100%;
+  height: 40px;
+  margin-top: auto;
+  background: red;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
 }
 /*# sourceMappingURL=NewPost.css.map */
