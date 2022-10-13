@@ -10,6 +10,8 @@ import styles from "../styles/Home.module.css";
 export default function Home() {
   const [searchActive, setsearchActive] = useState(false);
   const [newPostActive, setnewPostActive] = useState(false);
+  const [addPostActive, setaddPostActive] = useState(false);
+  //   !MAKE SURE TO CHANGE THE NAME OF ADDPOSSTACTIVE TO ADDPHOTOACTIVE _ CHNAGE AT INDEX.JS TOO
   const demoPosts = [
     {
       name: "Jamie Charlie",
@@ -172,7 +174,7 @@ export default function Home() {
         style={{ display: newPostActive ? "flex" : "none" }}
         className="newPostOverlay"
       >
-        <NewPostExpanded setnewPostActive={setnewPostActive} />
+        <NewPostExpanded setnewPostActive={setnewPostActive} setaddPostActive={setaddPostActive} addPostActive={addPostActive} />
       </div>
       <Navigation
         setsearchActive={setsearchActive}
@@ -188,7 +190,7 @@ export default function Home() {
             <SearchArea />
           ) : (
             <React.Fragment>
-              <NewPost setnewPostActive={setnewPostActive} />
+              <NewPost setaddPostActive={setaddPostActive} setnewPostActive={setnewPostActive} />
               <br />
               <br />
               <br />
