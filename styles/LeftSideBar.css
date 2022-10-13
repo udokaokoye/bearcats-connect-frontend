@@ -82,18 +82,17 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  font-family: 'Roboto';
+  font-family: Arial, Helvetica, sans-serif;
   font-weight: 400;
+  font-size: 13px;
   padding-left: 15px;
   cursor: pointer;
-  -webkit-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 
 .trending_container .trending_content span:hover {
-  -webkit-transform: scale(105%);
-          transform: scale(105%);
-  font-weight: bold;
+  background: #cacaca;
 }
 
 .mini_profile_container {

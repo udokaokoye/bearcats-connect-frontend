@@ -78,3 +78,94 @@
 
 
 }
+
+// !EXPANDED CSS CODE!
+
+.newPostExpandedContainer {
+    width: 500px;
+    height: 500px;
+    background: #ececec;
+    border-radius: 10px;
+
+    .header_bar {
+        display: flex;
+        // justify-content: center;
+        align-items: center;
+        height: 50px;
+        // background: grey;
+        border-bottom: 1px solid #ccc;
+        
+        .headerTitle {
+            width: 100%;
+            text-align: center;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 22px;
+        }
+
+        .closeIcn {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin-right: 20px;
+            background-color: #fff;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+        }
+    }
+
+    .userProfileInfo {
+        padding: 10px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+
+        .profile_pic {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background-color: brown;
+        }
+
+        .profile_info {
+            margin-left: 10px;
+
+            .username {
+                color: rgb(64, 64, 64);
+                font-weight: bold;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+
+            .user_major {
+                font-size: 13px;
+                color: rgb(108, 108, 108);
+            }
+        }
+    }
+
+    .post_entry {
+        padding: 10px;
+    }
+
+    .post_entry_field {
+        width: 100%;
+        min-height: 100px;
+        height: auto;
+        background-color: transparent;
+        border: none;
+        font-size: 22px;
+
+        &::placeholder {
+            color: rgb(116, 116, 116);
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        &:first {
+            // outline: none;
+        }
+
+    }
+
+}

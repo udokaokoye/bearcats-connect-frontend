@@ -1,13 +1,13 @@
 import React from 'react'
 
-const NewPost = () => {
+const NewPost = ({setnewPostActive}) => {
   return (
     <div className='newPost_container'>
         <div className="user_image">
             <div className="img"></div>
         </div>
         <div className="postEntry">
-            <input type="text" placeholder="What's Pawing?" />
+            <input onFocus={() => setnewPostActive(true)} type="text" placeholder="What's Pawing?" />
 
             <div className="post_action_buttons">
                 <button>Photo</button>

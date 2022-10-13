@@ -83,4 +83,114 @@
   border: 1px solid #ccc;
   cursor: pointer;
 }
+
+.newPostExpandedContainer {
+  width: 500px;
+  height: 500px;
+  background: #ececec;
+  border-radius: 10px;
+}
+
+.newPostExpandedContainer .header_bar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 50px;
+  border-bottom: 1px solid #ccc;
+}
+
+.newPostExpandedContainer .header_bar .headerTitle {
+  width: 100%;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 22px;
+}
+
+.newPostExpandedContainer .header_bar .closeIcn {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin-right: 20px;
+  background-color: #fff;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 15px;
+}
+
+.newPostExpandedContainer .userProfileInfo {
+  padding: 10px;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.newPostExpandedContainer .userProfileInfo .profile_pic {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background-color: brown;
+}
+
+.newPostExpandedContainer .userProfileInfo .profile_info {
+  margin-left: 10px;
+}
+
+.newPostExpandedContainer .userProfileInfo .profile_info .username {
+  color: #404040;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.newPostExpandedContainer .userProfileInfo .profile_info .user_major {
+  font-size: 13px;
+  color: #6c6c6c;
+}
+
+.newPostExpandedContainer .post_entry {
+  padding: 10px;
+}
+
+.newPostExpandedContainer .post_entry_field {
+  width: 100%;
+  min-height: 100px;
+  height: auto;
+  background-color: transparent;
+  border: none;
+  font-size: 22px;
+}
+
+.newPostExpandedContainer .post_entry_field::-webkit-input-placeholder {
+  color: #747474;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.newPostExpandedContainer .post_entry_field:-ms-input-placeholder {
+  color: #747474;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.newPostExpandedContainer .post_entry_field::-ms-input-placeholder {
+  color: #747474;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.newPostExpandedContainer .post_entry_field::placeholder {
+  color: #747474;
+  font-family: Arial, Helvetica, sans-serif;
+}
 /*# sourceMappingURL=NewPost.css.map */
