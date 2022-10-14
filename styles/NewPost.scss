@@ -81,6 +81,7 @@
 .newPostExpandedContainer {
   width: 500px;
   min-height: 400px;
+  max-height: 900px;
   background: #ececec;
   border-radius: 10px;
   padding: 10px;
@@ -179,10 +180,11 @@
     border-radius: 10px;
     margin-top: 10px;
     margin-bottom: 20px;
+    // display: none !important;
     .addImageArea {
       width: 100%;
       height: 100%;
-      display: flex;
+    //   display: none;
       flex-direction: column;
       padding: 10px;
 
@@ -238,6 +240,202 @@
 
     input {
       visibility: hidden;
+      display: none;
+    }
+
+  }
+
+  .previewImgArea {
+    width: 100%;
+    min-height: 200px;
+    background: black;
+    display: flex;
+    flex-direction: column;
+    // flex-wrap: wrap;
+    position: relative;
+
+    .floatingButton {
+        padding: 10px;
+        border-radius: 5px;
+        background: #fff;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: bold;
+        border: none;
+        position: absolute;
+        font-size: 13px;
+        top: 5px;
+        left: 5px;
+        cursor: pointer;
+    }
+
+    .floatingCloseBtn {
+        width: fit-content;
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 10px;
+        height: 10px;
+        top: 5px;
+        right: 5px;
+        padding: 15px;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+    .col_1, .col_2 {
+        width: 100%;
+        display: flex;
+
+
+    .preview_wrapper {
+        width: 100%;
+        max-height: 200px;
+        .previewImage {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top;
+        }
+    }
+    }
+
+}
+
+  .tagPeopleArea {
+    width: 100%;
+    height: 400px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    padding: 10px;
+
+    .searchArea {
+        width: 100%;
+        height: 50px;
+        padding-left: 10px;
+        padding-right: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .inputwithIcon {
+            width: 90%;
+            height: 100%;
+            border-radius: 10px;
+            background: rgb(219, 219, 219);
+            padding-left: 20px;
+            display: flex;
+            align-items: center;
+            font-size: 15px;
+        }
+
+        input {
+            width: 80%;
+            height: 100%;
+            background: transparent;
+            border: none;
+            margin-left: 10px;
+            font-size: 15px;
+            font-family: Arial, Helvetica, sans-serif;
+
+            &:focus {
+                outline: none;
+            }
+        }
+
+        span {
+            font-size: 15px;
+            color: red;
+        }
+    }
+
+    p {
+        text-align: center;
+        margin-top: 30px;
+        cursor: pointer;
+    }
+  }
+
+  .addLocation {
+    width: 100%;
+    height: 400px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    padding: 10px;
+    // background: red;
+    .searchArea {
+        width: 100%;
+        height: 50px;
+        background: rgb(228, 228, 228);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+
+        .searchIcn {
+            width: 30px;
+            margin-left: 10px;
+            // font-size: 15px;
+        }
+
+
+        input {
+            width: 100%;
+            height: 100%;
+            border: none;
+            background-color: transparent;
+            color: black;
+            font-size: 15px;
+            &:focus {
+                outline: none;
+            }
+        }
+    }
+
+    .locationList {
+        height: 310px;
+        width: 100%;
+        margin-top: 20px;
+        overflow-y: scroll;
+        .locationEntry {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            // margin-bottom: 20px;
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 10px;
+            &:hover {
+                background: rgb(219, 219, 219);
+            }
+
+            .locationIcn {
+                width: 30px; 
+                height: 30px;
+                border-radius: 6px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background: rgb(201, 201, 201);
+            }
+
+            .locationInfo {
+                margin-left: 10px;
+                font-family: Arial, Helvetica, sans-serif;
+
+                span {
+
+
+                    &:last-child {
+                        font-size: 12px;
+                        color: rgb(90, 90, 90);
+                    }
+                }
+            }
+        }
     }
   }
 

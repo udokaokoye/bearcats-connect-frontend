@@ -11,7 +11,7 @@ const PostMedia = ({fileType, files, orientation}) => {
         
                     {
                         files?.map((image, index) => (
-                            <div className={`post_Media_Wraapper ${orientation[index] == "l" ? "landscape" : "potrait"}`}>
+                            <div key={index} className={`post_Media_Wraapper ${orientation[index] == "l" ? "landscape" : "potrait"}`}>
                             <Image className='hey' src={image} width="100%" height="100%" layout='fill' />
                             {/* {orientation.length} */}
                         </div>

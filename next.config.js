@@ -3,9 +3,11 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
+    unoptimized: true,
     domains: [
       'media.istockphoto.com',
       "images.unsplash.com",
+      ""
     ]
   }
 }

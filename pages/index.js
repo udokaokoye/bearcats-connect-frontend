@@ -10,7 +10,7 @@ import styles from "../styles/Home.module.css";
 export default function Home() {
   const [searchActive, setsearchActive] = useState(false);
   const [newPostActive, setnewPostActive] = useState(false);
-  const [addPostActive, setaddPostActive] = useState(false);
+  const [addPhotoActive, setaddPhotoActive] = useState(false);
   //   !MAKE SURE TO CHANGE THE NAME OF ADDPOSSTACTIVE TO ADDPHOTOACTIVE _ CHNAGE AT INDEX.JS TOO
   const demoPosts = [
     {
@@ -174,7 +174,7 @@ export default function Home() {
         style={{ display: newPostActive ? "flex" : "none" }}
         className="newPostOverlay"
       >
-        <NewPostExpanded setnewPostActive={setnewPostActive} setaddPostActive={setaddPostActive} addPostActive={addPostActive} />
+        <NewPostExpanded setnewPostActive={setnewPostActive} setaddPhotoActive={setaddPhotoActive} addPhotoActive={addPhotoActive} />
       </div>
       <Navigation
         setsearchActive={setsearchActive}
@@ -190,12 +190,12 @@ export default function Home() {
             <SearchArea />
           ) : (
             <React.Fragment>
-              <NewPost setaddPostActive={setaddPostActive} setnewPostActive={setnewPostActive} />
+              <NewPost setaddPhotoActive={setaddPhotoActive} setnewPostActive={setnewPostActive} />
               <br />
               <br />
               <br />
-              {demoPosts.map((post) => (
-                <React.Fragment>
+              {demoPosts.map((post, index) => (
+                <React.Fragment key={index}>
                   <Post post={post} />
                 </React.Fragment>
               ))}

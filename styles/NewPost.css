@@ -87,6 +87,7 @@
 .newPostExpandedContainer {
   width: 500px;
   min-height: 400px;
+  max-height: 900px;
   background: #ececec;
   border-radius: 10px;
   padding: 10px;
@@ -221,9 +222,6 @@
 .newPostExpandedContainer .addImageSection .addImageArea {
   width: 100%;
   height: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -297,6 +295,237 @@
 
 .newPostExpandedContainer .addImageSection input {
   visibility: hidden;
+  display: none;
+}
+
+.newPostExpandedContainer .previewImgArea {
+  width: 100%;
+  min-height: 200px;
+  background: black;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  position: relative;
+}
+
+.newPostExpandedContainer .previewImgArea .floatingButton {
+  padding: 10px;
+  border-radius: 5px;
+  background: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  border: none;
+  position: absolute;
+  font-size: 13px;
+  top: 5px;
+  left: 5px;
+  cursor: pointer;
+}
+
+.newPostExpandedContainer .previewImgArea .floatingCloseBtn {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 10px;
+  height: 10px;
+  top: 5px;
+  right: 5px;
+  padding: 15px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.newPostExpandedContainer .previewImgArea .col_1, .newPostExpandedContainer .previewImgArea .col_2 {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.newPostExpandedContainer .previewImgArea .col_1 .preview_wrapper, .newPostExpandedContainer .previewImgArea .col_2 .preview_wrapper {
+  width: 100%;
+  max-height: 200px;
+}
+
+.newPostExpandedContainer .previewImgArea .col_1 .preview_wrapper .previewImage, .newPostExpandedContainer .previewImgArea .col_2 .preview_wrapper .previewImage {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: top;
+     object-position: top;
+}
+
+.newPostExpandedContainer .tagPeopleArea {
+  width: 100%;
+  height: 400px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  padding: 10px;
+}
+
+.newPostExpandedContainer .tagPeopleArea .searchArea {
+  width: 100%;
+  height: 50px;
+  padding-left: 10px;
+  padding-right: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.newPostExpandedContainer .tagPeopleArea .searchArea .inputwithIcon {
+  width: 90%;
+  height: 100%;
+  border-radius: 10px;
+  background: #dbdbdb;
+  padding-left: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 15px;
+}
+
+.newPostExpandedContainer .tagPeopleArea .searchArea input {
+  width: 80%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  margin-left: 10px;
+  font-size: 15px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.newPostExpandedContainer .tagPeopleArea .searchArea input:focus {
+  outline: none;
+}
+
+.newPostExpandedContainer .tagPeopleArea .searchArea span {
+  font-size: 15px;
+  color: red;
+}
+
+.newPostExpandedContainer .tagPeopleArea p {
+  text-align: center;
+  margin-top: 30px;
+  cursor: pointer;
+}
+
+.newPostExpandedContainer .addLocation {
+  width: 100%;
+  height: 400px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  padding: 10px;
+}
+
+.newPostExpandedContainer .addLocation .searchArea {
+  width: 100%;
+  height: 50px;
+  background: #e4e4e4;
+  border-radius: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.newPostExpandedContainer .addLocation .searchArea .searchIcn {
+  width: 30px;
+  margin-left: 10px;
+}
+
+.newPostExpandedContainer .addLocation .searchArea input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background-color: transparent;
+  color: black;
+  font-size: 15px;
+}
+
+.newPostExpandedContainer .addLocation .searchArea input:focus {
+  outline: none;
+}
+
+.newPostExpandedContainer .addLocation .locationList {
+  height: 310px;
+  width: 100%;
+  margin-top: 20px;
+  overflow-y: scroll;
+}
+
+.newPostExpandedContainer .addLocation .locationList .locationEntry {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.newPostExpandedContainer .addLocation .locationList .locationEntry:hover {
+  background: #dbdbdb;
+}
+
+.newPostExpandedContainer .addLocation .locationList .locationEntry .locationIcn {
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: #c9c9c9;
+}
+
+.newPostExpandedContainer .addLocation .locationList .locationEntry .locationInfo {
+  margin-left: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.newPostExpandedContainer .addLocation .locationList .locationEntry .locationInfo span:last-child {
+  font-size: 12px;
+  color: #5a5a5a;
 }
 
 .newPostExpandedContainer .addPostOptions {
