@@ -1,4 +1,4 @@
-import { faMarkdown } from "@fortawesome/free-brands-svg-icons";
+import { faMarkdown, faSlack } from "@fortawesome/free-brands-svg-icons";
 import {
   faFlask,
   faImage,
@@ -12,7 +12,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState, useEffect, useCallback } from "react";
-import Image from "next/image";
+// import Image from "next/image";
 import PostMedia from "./PostMedia";
 
 const NewPostExpanded = ({
@@ -22,91 +22,66 @@ const NewPostExpanded = ({
 }) => {
   const [tagPeopleActive, settagPeopleActive] = useState(false);
   const [addLocationActive, setaddLocationActive] = useState(false);
-  const [locationEntry, setlocationEntry] = useState("");
-  const [demoState, setdemoState] = useState([]);
+  const [previewImageActive, setpreviewImageActive] = useState(false)
+  //   const [demoState, setdemoState] = useState([]);
   const [uploadedImageList, setuploadedImageList] = useState([]);
-  const [locationList, setlocationList] = useState([
-    {
-      name: "Muntz Hall",
-      campus: "UCBA",
-    },
 
-    {
-      name: "Progress Hall",
-      campus: "UCBA",
-    },
-
-    {
-      name: "Walters Hall",
-      campus: "UCBA",
-    },
-
-    {
-      name: "Gators Hall",
-      campus: "Clifton",
-    },
-
-    {
-      name: "Flowry Hall",
-      campus: "Cleremount",
-    },
-
-    {
-      name: "Flowry Hall",
-      campus: "Cleremount",
-    },
-
-    {
-      name: "Flowry Hall",
-      campus: "Cleremount",
-    },
-
-    {
-      name: "Flowry Hall",
-      campus: "Cleremount",
-    },
-  ]);
+//   !INPUT STATES
+  const [locationEntry, setlocationEntry] = useState("");
+  const [caption, setcaption] = useState("")
+  const [uploadFiles, setuploadFiles] = useState([])
+  const [orientations, setorientations] = useState([])
   const initialLocationList = [
     {
+      id: 1,
       name: "Muntz Hall",
       campus: "UCBA",
     },
 
     {
+        id: 2,
       name: "Progress Hall",
       campus: "UCBA",
     },
 
     {
+        id: 3,
       name: "Walters Hall",
       campus: "UCBA",
     },
 
     {
+        id: 4,
       name: "Gators Hall",
       campus: "Clifton",
     },
 
     {
+        id: 5,
       name: "Flowry Hall",
       campus: "Cleremount",
     },
 
     {
+        id: 6,
       name: "Flowry Hall",
       campus: "Cleremount",
     },
 
     {
+        id: 7,
       name: "Flowry Hall",
       campus: "Cleremount",
     },
 
     {
+        id: 8,
       name: "Flowry Hall",
       campus: "Cleremount",
     },
   ];
+  const [locationList, setlocationList] = useState(initialLocationList);
+
 
   const locationListFilter = (e) => {
     // alert(e.target.value)
@@ -129,12 +104,64 @@ const NewPostExpanded = ({
   const imgprev = (ev) => {
     if (!ev.target.files) return; // Do nothing.
     [...ev.target.files].forEach((file) => {
-        setuploadedImageList((current) => [...current, URL.createObjectURL(file)])
-        URL.revokeObjectURL(file)
-    //   uploadedImageList.push();
-    //   previewImages(file);
+        var objectUrl = URL.createObjectURL(file)
+        setuploadedImageList((current) => [...current, objectUrl])
+        setpreviewImageActive(true)
+        var image = new Image();
+        image.onload = function () {
+            if (this.width > this.height) {
+                // console.log("l")
+                setorientations((current) => [...current, 'l'])
+            } else if(this.width < this.height) {
+                // console.log("p")
+                setorientations((current) => [...current, 'p'])
+            } else {
+                // console.log("l")
+                setorientations((current) => [...current, 'l'])
+            }
+
+
+        URL.revokeObjectURL(objectUrl)
+        }
+
+        image.src = objectUrl;
+        setuploadFiles((current) => [...current, file]);
+
     });
   };
+
+  const submitPostHandler = () => {
+    const formData = new FormData();
+        // if (uploadFiles.length <1 && caption == "" || caption == " ") {
+        //     return;
+        // }
+
+
+    
+    
+    
+    formData.append("userId", 3)
+    formData.append("caption", caption)
+    formData.append("location", locationEntry)
+    formData.append("orientation", orientations)
+    if (typeof window !== "undefined") {
+        // console.log(document.getElementById("imageUpload").files);
+                var ins = document.getElementById('imageUpload').files.length;
+        if (ins > 0) {
+            for (var x = 0; x < ins; x++) {
+                formData.append("files[]", document.getElementById('imageUpload').files[x]);
+            }
+        }
+    }
+    
+
+    fetch('http://localhost/bearcats_connect/posts.php', {
+        method: "POST",
+        body: formData
+    }).then((res) => res.json()).then((data) => {
+        console.log(data)
+    })
+  }
 
 
   // !Create a function that clearss all state when we close the add post modal.
@@ -171,6 +198,7 @@ const NewPostExpanded = ({
       >
         <textarea
           //   contentEditable={true}
+          onChange={(e) => setcaption(e.target.value)}
           className="post_entry_field"
           placeholder="what's on your mind, Levi?"
         ></textarea>
@@ -184,9 +212,9 @@ const NewPostExpanded = ({
       >
         <div className="addImageArea">
           <label
-            style={{
-              background: demoState.length > 0 ? `url(${demoState[0]})` : "",
-            }}
+            // style={{
+            // //   background: demoState.length > 0 ? `url(${demoState[0]})` : "",
+            // }}
             htmlFor="imageUpload"
           >
             <div
@@ -213,9 +241,16 @@ const NewPostExpanded = ({
 
       </div>
 
-      <div style={{display: uploadedImageList.length >=1 ? "flex" : "none"}} className={`previewImgArea `}>
+      <div style={{display: uploadedImageList.length >=1 && previewImageActive ? "flex" : "none"}} className={`previewImgArea `}>
         <label htmlFor="imageUpload" className="floatingButton"><FontAwesomeIcon icon={faImages} /> Add Photos/Videos</label>
-        <button onClick={() => setuploadedImageList([])} className="floatingCloseBtn"><FontAwesomeIcon icon={faTimes} /></button>
+        <button onClick={() => {
+            setuploadedImageList([])
+            setuploadFiles([])
+            setorientations([])
+            if (typeof window !== "undefined") {
+                document.getElementById('imageUpload').value = []
+            }
+        }} className="floatingCloseBtn"><FontAwesomeIcon icon={faTimes} /></button>
           <div className="col_1">
             <div className="preview_wrapper">
               <img
@@ -280,7 +315,10 @@ const NewPostExpanded = ({
 
         <div className="locationList">
           {locationList.map((location, index) => (
-            <div key={index} className="locationEntry">
+            <div onClick={() => {
+                setlocationEntry(location.id)
+                setaddLocationActive(false)
+            }} key={index} className="locationEntry">
               <div className="locationIcn">
                 <FontAwesomeIcon icon={faMapMarkerAlt} />
               </div>
@@ -298,7 +336,12 @@ const NewPostExpanded = ({
         <span>Add to your post</span>
         <div className="postOptions">
           <div
-            onClick={() => setaddPhotoActive(!addPhotoActive)}
+            onClick={() => {
+                setaddLocationActive(false)
+                settagPeopleActive(false)
+                setpreviewImageActive(true)
+                setaddPhotoActive(!addPhotoActive)
+            }}
             className="optionContainer addImage"
             title="Add Image"
           >
@@ -306,7 +349,12 @@ const NewPostExpanded = ({
           </div>
 
           <div
-            onClick={() => settagPeopleActive(!tagPeopleActive)}
+            onClick={() => {
+                setaddLocationActive(false);
+                setpreviewImageActive(false)
+                setaddPhotoActive(false);
+                settagPeopleActive(!tagPeopleActive)
+            }}
             className="optionContainer tagUser"
             title="Tag a User"
           >
@@ -317,7 +365,12 @@ const NewPostExpanded = ({
             <FontAwesomeIcon icon={faSmile} />
           </div>
           <div
-            onClick={() => setaddLocationActive(!addLocationActive)}
+            onClick={() => {
+                setpreviewImageActive(false)
+                setaddPhotoActive(false);
+                settagPeopleActive(false)
+                setaddLocationActive(!addLocationActive)
+            }}
             className="optionContainer location"
             title="Add Location"
           >
@@ -328,7 +381,7 @@ const NewPostExpanded = ({
 
       {/* <br /> */}
 
-      <button onClick={() => console.log(uploadedImageList)} className="postBtn">Post</button>
+      <button onClick={() => submitPostHandler()} className="postBtn">Post</button>
     </div>
   );
 };
