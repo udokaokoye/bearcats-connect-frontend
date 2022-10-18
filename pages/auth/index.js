@@ -77,6 +77,8 @@ const Auth = () => {
   const [usernameError, setusernameError] = useState(false);
   const [emailError, setemailError] = useState(false);
   const [invalidEmail, setinvalidEmail] = useState(false);
+  const [emailFound, setemailFound] = useState(false)
+  const [usernameFound, setusernameFound] = useState(false)
 
 
   const confirmPassword = (e) => {
@@ -90,6 +92,21 @@ const Auth = () => {
     return false;
   };
 
+  const passswordAlgo = (password) => {
+    if (password.length < 6 
+      // || password.match(/[a-z]+/) 
+      // || password.match(/[A-Z]+/) 
+      // || password.match(/[0-9]+/)
+      ) {
+      setpasswordError(true);
+      return false;
+
+    } else {
+      setpasswordError(false);
+      return true;
+    }
+  }
+
   const validateEmail = (email) => {
     return String(email)
       .toLowerCase()
@@ -97,6 +114,26 @@ const Auth = () => {
         /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
       );
   };
+
+  const checkIfEmailUsernameExists = () => {
+    const formData = new FormData()
+    formData.append('email', signupEmail)
+    formData.append("username", signupUsername)
+    fetch(`http://localhost/bearcats_connect/helpers.php?helper=checkUsernamePassword`, {
+      method: "POSST", 
+      body: formData
+    }).then((res) => res.json()).then((data) => {
+      if (data.includes("user found")) {
+        setusernameFound(true)
+        return false
+      } else if (data.includes("email found")) {
+        setemailFound(true)
+        return false
+      }
+      
+      console.log(data)
+    })
+  }
 
   const handelSigUp = () => {
     const formData = new FormData();
@@ -107,7 +144,8 @@ const Auth = () => {
       signupUsername == "" ||
       signupPassword == "" ||
       !confirmPassword(signupPasswordConfirm) ||
-      !validateEmail(signupEmail)
+      !validateEmail(signupEmail) ||
+      !passswordAlgo(signupPassword)
     ) {
       if (!signupEmail.includes("@mail.uc.edu")) {
         setinvalidEmail(true);
@@ -120,6 +158,7 @@ const Auth = () => {
       setinvalidEmail(true);
       return false;
     } else {
+      checkIfEmailUsernameExists()
       formData.append("firstName", fName)
       formData.append("lastName", lName)
       formData.append("email", signupEmail)
@@ -137,7 +176,7 @@ const Auth = () => {
           settoken(data[2])
           Cookies.set("user-token", data[2], {expires: new Date(new Date().setDate(today.getDate() + 30))})
         }
-        console.log(data)
+        // console.log(data)
       })
     }
   };
