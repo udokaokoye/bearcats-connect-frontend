@@ -1,13 +1,24 @@
-import React, { useState } from "react";
+import { useRouter } from "next/router";
+import React, { useState, useEffect } from "react";
 import LeftSideBar from "../Components/LeftSideBar";
 import Navigation from "../Components/Navigation";
 import NewPost from "../Components/NewPost";
 import NewPostExpanded from "../Components/NewPostExpanded";
 import Post from "../Components/Post";
 import SearchArea from "../Components/SearchArea";
+import { verifyAuth } from "../lib/swr-hooks";
 import styles from "../styles/Home.module.css";
 
 export default function Home() {
+  const router = useRouter()
+
+  useEffect(() => {
+    verifyAuth('/', router)
+  }, [])
+  
+
+
+
   const [searchActive, setsearchActive] = useState(false);
   const [newPostActive, setnewPostActive] = useState(false);
   const [addPhotoActive, setaddPhotoActive] = useState(false);
