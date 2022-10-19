@@ -1,15 +1,18 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import SuggestedFriends from './SuggestedFriends'
 import Trending from './Trending'
 
-const LeftSideBar = () => {
+const LeftSideBar = ({user}) => {
+
+
+  
   return (
     <div className='left_sections'>
       <div className="left_section_1">
         <div className="profile_img">
-          <div className="img"></div>
+          <div style={{background: `url(${user?.img})`}} className="img"></div>
         </div>
-        <span>Levi Okoye</span>
+        <span>{user?.fName + " " + user?.lName}</span>
       </div>
 
       <div className="left_section_2">

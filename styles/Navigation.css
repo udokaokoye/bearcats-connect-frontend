@@ -2,44 +2,27 @@
   width: 100%;
   height: 6vh;
   background: white;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
   padding-top: 10px;
   padding-bottom: 10px;
   padding-left: 50px;
   padding-right: 50px;
 }
-
 .navigation .nav_logo_home {
   width: 40%;
   height: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  align-items: center;
+  justify-content: space-between;
 }
-
 .navigation .nav_logo_home .nav_logo {
   width: 100%;
   height: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
   cursor: pointer;
 }
-
 .navigation .nav_logo_home .nav_logo .nav_img {
   width: 10%;
   height: 100%;
@@ -48,13 +31,11 @@
   background-position: center;
   background-repeat: no-repeat;
 }
-
 .navigation .nav_logo_home .nav_logo span {
   font-size: 1.5rem;
   margin-left: 10px;
   font-weight: bold;
 }
-
 .navigation .nav_logo_home .nav_home_btn {
   width: 100px;
   height: 40px;
@@ -65,45 +46,29 @@
   font-weight: bold;
   cursor: pointer;
 }
-
 .navigation .nav_center_search {
   width: 400px;
   height: 100%;
-  background: #e5e5e5;
+  background: rgb(229, 229, 229);
   border-radius: 9px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: center;
+  align-items: center;
   margin-left: auto;
   overflow: hidden;
 }
-
 .navigation .nav_center_search .search_icn {
   width: 60px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: center;
+  align-items: center;
   text-align: center;
 }
-
 .navigation .nav_center_search .search_input {
   width: 100%;
   height: 100%;
   border: none;
 }
-
 .navigation .nav_center_search .search_input input {
   background: transparent;
   border: none;
@@ -111,46 +76,35 @@
   height: 100%;
   padding-left: 10px;
 }
-
 .navigation .nav_center_search .search_input input:focus {
   outline: none;
 }
-
 .navigation .nav_center_search .searchClose {
   cursor: pointer;
   margin-right: 20px;
 }
-
 .navigation .nav_user_account {
   width: 10%;
   height: 100%;
   margin-left: auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
 }
-
 .navigation .nav_user_account .user_image {
   width: 40px;
   height: 40px;
   background: url("https://images.unsplash.com/photo-1584119164246-461d43e9bab3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80");
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
+  background-position: top !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
   border-radius: 50%;
 }
-
 .navigation .nav_user_account .user_name {
   margin-left: 15px;
   margin-right: 15px;
   font-weight: bold;
   cursor: pointer;
 }
-
 .navigation .nav_user_account .chevron_icn {
   cursor: pointer;
-}
-/*# sourceMappingURL=Navigation.css.map */
+}/*# sourceMappingURL=Navigation.css.map */

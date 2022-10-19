@@ -1,9 +1,1 @@
-{
-    "version": 3,
-    "mappings": "",
-    "sources": [
-        "RightSideBar.scss"
-    ],
-    "names": [],
-    "file": "RightSideBar.css"
-}
+{"version":3,"sources":[],"names":[],"mappings":"","file":"RightSideBar.css"}

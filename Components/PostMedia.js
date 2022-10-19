@@ -12,7 +12,7 @@ const PostMedia = ({fileType, files, orientation}) => {
                     {
                         files?.map((image, index) => (
                             <div key={index} className={`post_Media_Wraapper ${orientation[index] == "l" ? "landscape" : "potrait"}`}>
-                            <Image className='hey' src={image} width="100%" height="100%" layout='fill' />
+                            <Image className='hey' src={image} layout='fill' />
                             {/* {orientation.length} */}
                         </div>
                         ))
@@ -25,16 +25,16 @@ const PostMedia = ({fileType, files, orientation}) => {
             <div className={`tri_layout ${orientation[0] == "l" ? 'tri_layout_l_first' : ''}`}>
             <div className="col_1">
                 <div className={`post_Media_Wraapper ${orientation[0] == "l" ? "landscape" : "potrait"}`}>
-                    <Image className='hey' src={files[0]} width="100%" height="100%" layout='fill' />
+                    <Image className='hey' src={files[0]} layout='fill' />
                 </div>
             </div>
     
             <div className="col_2">
                     <div className={`post_Media_Wraapper ${orientation[1] == "l" ? "landscape" : "potrait"}`}>
-                        <Image className='hey' src={files[1]} width="100%" height="100%" layout='fill' />
+                        <Image className='hey' src={files[1]} layout='fill' />
                     </div>
                     <div className={`post_Media_Wraapper ${orientation[2] == "l" ? "landscape" : "potrait"}`}>
-                        <Image className='hey' src={files[2]} width="100%" height="100%" layout='fill' />
+                        <Image className='hey' src={files[2]} layout='fill' />
                     </div>
             </div>
          </div>
@@ -44,16 +44,16 @@ const PostMedia = ({fileType, files, orientation}) => {
             <div className={`quad_layout`}>
             <div className="col_1">
                 <div className={`post_Media_Wraapper ${orientation[0] == "l" ? "landscape" : "potrait"}`}>
-                    <Image className='hey' src={files[0]} width="100%" height="100%" layout='fill' />
+                    <Image className='hey' src={files[0]}  layout='fill' />
                 </div>
                 <div className={`post_Media_Wraapper ${orientation[1] == "l" ? "landscape" : "potrait"}`}>
-                    <Image className='hey' src={files[1]} width="100%" height="100%" layout='fill' />
+                    <Image className='hey' src={files[1]}  layout='fill' />
                 </div>
             </div>
     
             <div className="col_2">
                     <div className={`post_Media_Wraapper ${orientation[2] == "l" ? "landscape" : "potrait"}`}>
-                        <Image className='hey' src={files[2]} width="100%" height="100%" layout='fill' />
+                        <Image className='hey' src={files[2]}  layout='fill' />
                     </div>
                     {
                         files.length > 4 ? (
@@ -62,11 +62,11 @@ const PostMedia = ({fileType, files, orientation}) => {
                                 <span>+ {files.length - 4}</span>
                                 </div>
                                 
-                                {/* <Image className='hey' src={files[3]} width="100%" height="100%" layout='fill' /> */}
+                                {/* <Image className='hey' src={files[3]}  layout='fill' /> */}
                             </div>
                         ) : (
                             <div className={`post_Media_Wraapper ${orientation[3] == "l" ? "landscape" : "potrait"}`}>
-                        <Image className='hey' src={files[3]} width="100%" height="100%" layout='fill' />
+                        <Image className='hey' src={files[3]}  layout='fill' />
                     </div>
                         )
                     }

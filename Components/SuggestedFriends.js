@@ -38,8 +38,8 @@ const SuggestedFriends = () => {
     <div className='suggestedFriends'>
         <h3>Suggested</h3>
         <hr />
-        {demoArray.slice(0, 4).map((user) => (
-            <React.Fragment>
+        {demoArray.slice(0, 4).map((user, index) => (
+            <React.Fragment key={index}>
                 <MiniProfileCard name={user.name} major={user.major} imageUrl={user.imageUrl} username={user.username} />
                 <hr />
             </React.Fragment>

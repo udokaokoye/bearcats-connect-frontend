@@ -165,6 +165,26 @@
         font-size: 40px;
         cursor: pointer;
         background-color: rgb(238, 238, 238);
+        position: relative;
+
+        .float_c_btn {
+            position: absolute;
+            width: 120px;
+            height: 40px;
+            border-radius: 8px;
+            font-size: 14px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgb(231, 231, 231);
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+
+            span {
+                margin-left: 5px;
+            }
+        }
 
         input {
             visibility: hidden;
@@ -179,7 +199,6 @@
         }
 
         // background: black;
-        position: relative;
 
         .cc {
             width: 100%;

@@ -62,6 +62,7 @@ const Auth = () => {
   const [major, setmajor] = useState("");
   const [bio, setbio] = useState("");
   const [mobile, setmobile] = useState("");
+  const [campus, setcampus] = useState("")
   const [profilePic, setprofilePic] = useState("");
   const [coverPic, setcoverPic] = useState("");
   const [userId, setuserId] = useState("")
@@ -74,11 +75,13 @@ const Auth = () => {
   const [formError, setformError] = useState(false);
   const [confirmPasswordError, setconfirmPasswordError] = useState(false);
   const [passwordError, setpasswordError] = useState(false);
-  const [usernameError, setusernameError] = useState(false);
-  const [emailError, setemailError] = useState(false);
+  // const [usernameError, setusernameError] = useState(false);
+  // const [emailError, setemailError] = useState(false);
   const [invalidEmail, setinvalidEmail] = useState(false);
   const [emailFound, setemailFound] = useState(false)
   const [usernameFound, setusernameFound] = useState(false)
+  const [emailUsernameExists, setemailUsernameExists] = useState([])
+  const [dem, setdem] = useState([false, false])
 
 
   const confirmPassword = (e) => {
@@ -94,10 +97,10 @@ const Auth = () => {
 
   const passswordAlgo = (password) => {
     if (password.length < 6 
-      // || password.match(/[a-z]+/) 
-      // || password.match(/[A-Z]+/) 
-      // || password.match(/[0-9]+/)
+      || !password.match(/[A-Z]+/) 
+      || !password.match(/[0-9]+/)
       ) {
+        console.log("password error")
       setpasswordError(true);
       return false;
 
@@ -105,6 +108,8 @@ const Auth = () => {
       setpasswordError(false);
       return true;
     }
+
+    return false
   }
 
   const validateEmail = (email) => {
@@ -114,26 +119,6 @@ const Auth = () => {
         /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
       );
   };
-
-  const checkIfEmailUsernameExists = () => {
-    const formData = new FormData()
-    formData.append('email', signupEmail)
-    formData.append("username", signupUsername)
-    fetch(`http://localhost/bearcats_connect/helpers.php?helper=checkUsernamePassword`, {
-      method: "POSST", 
-      body: formData
-    }).then((res) => res.json()).then((data) => {
-      if (data.includes("user found")) {
-        setusernameFound(true)
-        return false
-      } else if (data.includes("email found")) {
-        setemailFound(true)
-        return false
-      }
-      
-      console.log(data)
-    })
-  }
 
   const handelSigUp = () => {
     const formData = new FormData();
@@ -158,26 +143,41 @@ const Auth = () => {
       setinvalidEmail(true);
       return false;
     } else {
-      checkIfEmailUsernameExists()
+      
       formData.append("firstName", fName)
       formData.append("lastName", lName)
       formData.append("email", signupEmail)
       formData.append("username", signupUsername)
       formData.append("password", signupPassword)
 
+      fetch('http://localhost/bearcats_connect/helpers.php?helper=checkUsernamePassword', {
+      method: "POST", 
+      body: formData
+    }).then((res) => res.json()).then((data) => {
+      console.log(data)
+ 
+      if (data[0] !== true && data[1] !== true) {        
+        fetch("http://localhost/bearcats_connect/signup.php", {
+          method: "POST",
+          body: formData
+        }).then((res) => res.json()).then((data) => {
+          if (data[0] == "SUCCESS") {
+            setcontinueSignUp(true)
+            setuserId(data[1])
+            settoken(data[2])
+            Cookies.set("user-token", data[2], {expires: new Date(new Date().setDate(today.getDate() + 30))})
+          }
+          // console.log(data)
+        })
+      }
+      setemailUsernameExists(data)
+    })
 
-      fetch("http://localhost/bearcats_connect/signup.php", {
-        method: "POST",
-        body: formData
-      }).then((res) => res.json()).then((data) => {
-        if (data[0] == "SUCCESS") {
-          setcontinueSignUp(true)
-          setuserId(data[1])
-          settoken(data[2])
-          Cookies.set("user-token", data[2], {expires: new Date(new Date().setDate(today.getDate() + 30))})
-        }
-        // console.log(data)
-      })
+
+    return;
+
+
+
     }
   };
 
@@ -188,6 +188,7 @@ const Auth = () => {
    formData.append("major", major)
    formData.append("bio", bio)
    formData.append("mobile", mobile)
+   formData.append("campus", campus)
   //  formData.append("cover_picture", null)
   //  formData.append("profile_picture", null)
 
@@ -207,10 +208,40 @@ const Auth = () => {
       body: formData
     }).then((res) => res.json()).then((data) => {
       console.log(data)
-      if (data == "UPDATED") {
+      if (data[0] == "UPDATED") {
+        if (Cookies.get('user-token')) {
+          Cookies.remove('user-token')
+        }
+        Cookies.set("user-token", data[2], {expires:  new Date(new Date().setDate(today.getDate() + 30))})
         router.push("/")
       }
     })
+  }
+
+  const handelLogin = () => {
+    const formData = new FormData()
+    if (loginEmailUsername == '' || loginPassword == "") {
+      alert("Please Fill In All Fields")
+    } else {
+        formData.append('user', loginEmailUsername)
+        formData.append('password', loginPassword)
+        const url = loginEmailUsername.includes("@mail.uc.edu") ? "http://localhost/bearcats_connect/login.php" : "http://localhost/bearcats_connect/login.php?withUsername=1"
+
+        fetch(url, {
+          method: "POST",
+          body: formData
+        }).then((res) => res.json()).then((data) => {
+          if (data[0] == "SUCCESS") {
+            if (Cookies.get('user-token')) {
+              Cookies.remove("user-token")
+            }
+            Cookies.set("user-token", data[2], {expires:  new Date(new Date().setDate(today.getDate() + 30))})
+            router.push('/')
+          } else if (data == "wrong") {
+            alert("Wrong username or password")
+          }
+        })
+    }
   }
 
   const imgprev = (ev, section) => {
@@ -235,7 +266,11 @@ const Auth = () => {
   };
   return (
     <div className="authContainer">
-      <AuthHeader />
+      <AuthHeader 
+      setloginPassword={setloginPassword} 
+      setloginEmailUsername={setloginEmailUsername} 
+      handelLogin={handelLogin} 
+      />
 
       <div className="authmain">
         <div className="artContainer">
@@ -252,9 +287,11 @@ const Auth = () => {
 
           {continueSignUp ? (
             <div data-aos-duration="1000" data-aos="fade-up">
-              <label htmlFor="cc" className="addProfileImages">
+              <label htmlFor={ coverPic ? '' : "cc"} className="addProfileImages">
+                
                 {coverPic !== "" ? (
                   <React.Fragment>
+                    <label className="float_c_btn" htmlFor="cc"><FontAwesomeIcon icon={faImage} /> <span>Change</span></label>
                     <img className="cc" src={coverPic} alt="" />
                   </React.Fragment>
                 ) : (
@@ -266,11 +303,12 @@ const Auth = () => {
                 {/* <img className="cc" src="" alt="" /> */}
                 {profilePic !== "" ? (
                   <React.Fragment>
+                    
                     <img className="pp" src={profilePic} alt="" />
                   </React.Fragment>
                 ) : (
                   <React.Fragment>
-                    <label htmlFor="pp" className="pp">
+                    <label htmlFor={profilePic ? "" : "pp"} className="pp">
                       <FontAwesomeIcon icon={faUserPlus} />
                       {/* <p>add +</p> */}
                     </label>
@@ -309,6 +347,17 @@ const Auth = () => {
                 </div>
               </div>
 
+              <div className="fieldEntry">
+                  <label htmlFor="">What's your campus?</label>
+                  <select onChange={(e) => setcampus(e.target.value)} defaultValue={null} name="" id="">
+                    <option value="CLIF">{"Clifton Campus (main capus)"}</option>
+                    <option value="UCBA">{"Blue Ash Campus (reg capus)"}</option>
+                    <option value="CLEM">{"Cleremont Campus (reg capus)"}</option>
+                  </select>
+                </div>
+
+                <br />
+
               <button onClick={() => handelContinueSignUp()}>Finish!</button>
             </div>
           ) : (
@@ -341,7 +390,7 @@ const Auth = () => {
                   type="email"
                 />
                 <small>
-                  {emailError ? "hmm...looks like that's taken" : ""}
+                  {emailUsernameExists[0] == true ? "hmm...looks like that's taken" : ""}
                 </small>
                 <small>
                   {invalidEmail ? "please enter a vaild UC email" : ""}
@@ -356,7 +405,7 @@ const Auth = () => {
                   type="text"
                 />
                 <small>
-                  {usernameError ? "hmm...looks like that's taken" : ""}
+                  {emailUsernameExists[1] == true  ? "hmm...looks like that's taken" : ""}
                 </small>
               </div>
               <div className="fields">
@@ -410,6 +459,9 @@ const Auth = () => {
               <br />
               <br />
               <button onClick={() => handelSigUp()}>Sign Up!</button>
+              <br />
+              <br />
+              <span>Have an account? <span onClick={() => setauthMode('signin')} style={{color: 'red', cursor: "pointer"}}>Sign In</span></span>
             </div>
           )}
         </div>

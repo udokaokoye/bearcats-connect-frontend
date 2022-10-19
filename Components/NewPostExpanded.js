@@ -19,6 +19,7 @@ const NewPostExpanded = ({
   setnewPostActive,
   setaddPhotoActive,
   addPhotoActive,
+  user
 }) => {
   const [tagPeopleActive, settagPeopleActive] = useState(false);
   const [addLocationActive, setaddLocationActive] = useState(false);
@@ -131,15 +132,7 @@ const NewPostExpanded = ({
   };
 
   const submitPostHandler = () => {
-    const formData = new FormData();
-        // if (uploadFiles.length <1 && caption == "" || caption == " ") {
-        //     return;
-        // }
-
-
-    
-    
-    
+    const formData = new FormData();    
     formData.append("userId", 3)
     formData.append("caption", caption)
     formData.append("location", locationEntry)
@@ -183,10 +176,10 @@ const NewPostExpanded = ({
       </div>
 
       <div className="userProfileInfo">
-        <div className="profile_pic"></div>
+        <div style={{background: `url(${user?.img})`}} className="profile_pic"></div>
         <div className="profile_info">
-          <span className="username">Levi Okoye</span> <br />{" "}
-          <span className="user_major">Information Technology</span>
+          <span className="username">{user.fName + " " + user.lName}</span> <br />{" "}
+          <span className="user_major">{user?.major}</span>
         </div>
       </div>
 
@@ -200,7 +193,7 @@ const NewPostExpanded = ({
           //   contentEditable={true}
           onChange={(e) => setcaption(e.target.value)}
           className="post_entry_field"
-          placeholder="what's on your mind, Levi?"
+          placeholder={`what's on your mind, ${user?.fName}?`}
         ></textarea>
       </div>
 

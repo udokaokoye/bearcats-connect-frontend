@@ -6,14 +6,21 @@ import NewPost from "../Components/NewPost";
 import NewPostExpanded from "../Components/NewPostExpanded";
 import Post from "../Components/Post";
 import SearchArea from "../Components/SearchArea";
-import { verifyAuth } from "../lib/swr-hooks";
+import { getLoggedInUser, verifyAuth } from "../lib/swr-hooks";
 import styles from "../styles/Home.module.css";
 
 export default function Home() {
+  const [user, setuser] = useState({
+    fName: "",
+    lName: "",
+    img: ""
+  })
   const router = useRouter()
 
   useEffect(() => {
     verifyAuth('/', router)
+    setuser(getLoggedInUser())
+    // console.log(getLoggedInUser())
   }, [])
   
 
@@ -185,23 +192,24 @@ export default function Home() {
         style={{ display: newPostActive ? "flex" : "none" }}
         className="newPostOverlay"
       >
-        <NewPostExpanded setnewPostActive={setnewPostActive} setaddPhotoActive={setaddPhotoActive} addPhotoActive={addPhotoActive} />
+        <NewPostExpanded user={user} setnewPostActive={setnewPostActive} setaddPhotoActive={setaddPhotoActive} addPhotoActive={addPhotoActive} />
       </div>
       <Navigation
         setsearchActive={setsearchActive}
         searchActive={searchActive}
+        user={user}
       />
 
       <div className="app_wrapper">
         <div className="leftBar">
-          <LeftSideBar />
+          <LeftSideBar user={user} />
         </div>
         <div className="main_application">
           {searchActive ? (
             <SearchArea />
           ) : (
             <React.Fragment>
-              <NewPost setaddPhotoActive={setaddPhotoActive} setnewPostActive={setnewPostActive} />
+              <NewPost user={user} setaddPhotoActive={setaddPhotoActive} setnewPostActive={setnewPostActive} />
               <br />
               <br />
               <br />
