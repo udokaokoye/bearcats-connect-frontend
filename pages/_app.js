@@ -7,6 +7,8 @@ import '../styles/NewPost.css'
 import '../styles/Post.css'
 import '../styles/SearchArea.css'
 import '../styles/Auth.css'
+import '../styles/Pid.css'
+import '../styles/Comment.css'
 
 function MyApp({ Component, pageProps }) {
   return <Component {...pageProps} />

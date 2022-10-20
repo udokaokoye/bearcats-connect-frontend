@@ -426,8 +426,11 @@ const Auth = () => {
                         <br />
                         <span>
                           password must be greater than six characters and must
-                          contain a number
+                          contain a capital letter and a number
                         </span>
+                        
+                        <br />
+                        <br />
                         <br />
                         <br />
                       </React.Fragment>
