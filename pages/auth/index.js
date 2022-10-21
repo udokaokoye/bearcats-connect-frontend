@@ -434,7 +434,7 @@ const Auth = () => {
                         <br />
                         <br />
                       </React.Fragment>
-                    ) : (
+                      ) : (
                       ""
                     )}
                   </small>
