@@ -5,10 +5,10 @@ import React from 'react'
 import { faFacebookMessenger } from '@fortawesome/free-brands-svg-icons'
 import PostMedia from './PostMedia'
 
-const Post = ({post}) => {
+const Post = ({post, align=true, width=70}) => {
 
   return (
-    <div className='postContainer'>
+    <div style={{margin: align ? "0 auto" : '', width: `${width}%`}} className='postContainer'>
         <div className="post_profile_img">
             <div style={{background: `url(${post.profilePic})`}} className="img"></div>
         </div>

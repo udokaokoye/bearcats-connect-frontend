@@ -1,10 +1,10 @@
 import React from 'react'
 
-const NewPost = ({setnewPostActive, setaddPhotoActive, user}) => {
+const NewPost = ({setnewPostActive, setaddPhotoActive, user, align=true, width=70}) => {
   return (
-    <div className='newPost_container'>
+    <div style={{margin: align ? "0 auto" : "", width: `${width}%`}} className='newPost_container'>
         <div className="user_image">
-            <div style={{background: `url(${user.img})`}} className="img"></div>
+            <div style={{background: `url(${user?.img})`}} className="img"></div>
         </div>
         <div className="postEntry">
             <input onFocus={() => setnewPostActive(true)} type="text" placeholder={`What's Pawing ${user?.fName}?`} />

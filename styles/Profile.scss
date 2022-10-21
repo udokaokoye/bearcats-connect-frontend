@@ -1,35 +1,221 @@
 .profile_main {
     width: 75%  !important;
+    height: 150vh !important;
+    // background: green;
+    overflow-y: hidden !important;
+    background: white;
     // background: red;
 
     .profileInfoArea {
         width: 100%;
-        height: 500px;
-        background: blue;
+        height: 400px;
+        // background: blue;
         position: relative;
+        margin-bottom: 20px;
 
         .coverArea {
             width: 100%;
-            height: 400px;
+            height: 300px;
             position: absolute;
             background: #000;
             background-position: center !important;
             background-size: cover !important;
             background-repeat: no-repeat !important;
+            border-radius: 20px;
+            overflow: hidden;
         }
 
         .profilePicArea {
-            width: 200px;
-            height: 200px;
-            background: brown;
-            background-position: center !important;
-            background-size: cover !important;
-            background-repeat: no-repeat !important;
-            border-radius: 50%;
+            width: 100%;
+            height: 10 0px;
             position: absolute;
             z-index: 2;
-            bottom: 10px;
-            left: 10px;
+            display: flex;
+            // background: red;
+            // align-items: flex-start;
+            bottom: 0;
+
+            .UnameAndFollowCount {
+                position: relative;
+                width: 80%;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+            }
+            
+            .username {
+                margin-left: 170px;
+                margin-top: 10px;
+                font-size: 32px;
+                font-family: Arial, Helvetica, sans-serif;
+                font-weight: bold;
+            }
+
+            .major {
+                margin-left: 170px;
+                font-size: 15px;
+                color: rgb(76, 76, 76);
+            }
+
+            .followCounts {
+                margin-left: 170px;
+                margin-top: 10px;
+
+                span {
+                    margin-right: 20px;
+                    font-weight: bold;
+
+                    &:last-child {
+                        margin-left: 20px;
+                    }
+                }
+            }
+
+            .followBtn {
+                width: 200px;
+                height: 50px;
+                align-self: center;
+                border-radius: 10PX;
+                background: red;
+                color: white;
+                font-weight: bold;
+                cursor: pointer;
+            }
+
+
+            .profilePic {
+                width: 150px;
+                height: 150px;
+                border: 1px solid #ccc;
+                border-radius: 50%;
+                background-position: top !important;
+                background-size: cover !important;
+                background-repeat: no-repeat !important;
+                position: absolute;
+                bottom: 0px;
+                left: 10px;
+            }
+        }
+
+    }
+    hr {
+        // display: none;
+        // border-color: rgba(0, 0, 0, 0.317);
+        background: rgba(237, 237, 237, 0.04);
+    }
+
+    .actionOptions {
+        width: 100%;
+        margin: 0 auto;
+        // margin-top: 50px;
+        // height: 20px;
+        display: flex;
+        padding: 20px;
+        
+        span {
+            margin-left: 5px;
+            width: 80px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+
+            &:hover {
+                border-radius: 5px;
+                background: rgb(226, 226, 226);
+            }
+            &:first-child {
+                margin-left: 0px;
+                border-bottom: 2px solid red;
+            }
+
+            &:last-child {
+                margin-left: auto;
+            }
+        }
+    }
+
+    .profileDetails {
+        height: 100vh;
+        padding: 20px;
+        display: flex;
+        // justify-content: space-between;
+
+        .profileOptions {
+            width: 30%;
+            border-right: 1px solid #ccc;
+            
+            .sectionHeader {
+                font-size: 18px;
+                font-family: Arial, Helvetica, sans-serif;
+                color: rgb(28, 28, 28);
+            }
+
+            .profilebio {
+                margin-bottom: 30px;
+                p {
+                    font-size: 15px;
+                    font-family: "raleway";
+                    color: rgb(47, 47, 47);
+                    margin-top: 5px;
+                }
+            }
+
+            .profileHobbies {
+                margin-bottom: 30px;
+                .hobbyWrapper {
+                    display: flex;
+                    gap: 30px;
+                    flex-wrap: wrap;
+                    margin-top: 5px;
+                    // justify-content: space-evenly;
+                .hobby {
+                    width: 80px;
+                    height: 40px;
+                    background: #ccc;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    border-radius: 10px;
+                    font-family: Helvetica, sans-serif;
+                    font-size: 14px;
+                    cursor: pointer;
+                }
+            }
+            }
+
+            .profileFollowers {
+                h3 {
+                    margin-bottom: 20px;
+                }
+
+                hr {
+                    margin-top: 5px;
+                    margin-bottom: 20px;
+                    margin-right: 20px;
+                    border: none;
+                    height: 1px;
+                    /* Set the hr color */
+                    color: rgba(51, 51, 51, 0.152); /* old IE */
+                    background-color: rgba(51, 51, 51, 0.271); /* Modern Browsers */
+                }
+            }
+        }
+
+        .profilePostArea {
+            width: 60%;
+            height: auto;
+            overflow-y: scroll ;
+
+            hr {
+                margin: 20px;
+                border: none;
+                height: 1px;
+                /* Set the hr color */
+                color: rgba(51, 51, 51, 0.152); /* old IE */
+                background-color: rgba(51, 51, 51, 0.271); /* Modern Browsers */
+            }
         }
     }
 }
