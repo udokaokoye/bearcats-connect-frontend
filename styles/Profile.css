@@ -1,0 +1,35 @@
+.profile_main {
+  width: 75%  !important;
+}
+
+.profile_main .profileInfoArea {
+  width: 100%;
+  height: 500px;
+  background: blue;
+  position: relative;
+}
+
+.profile_main .profileInfoArea .coverArea {
+  width: 100%;
+  height: 400px;
+  position: absolute;
+  background: #000;
+  background-position: center !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+}
+
+.profile_main .profileInfoArea .profilePicArea {
+  width: 200px;
+  height: 200px;
+  background: brown;
+  background-position: center !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  border-radius: 50%;
+  position: absolute;
+  z-index: 2;
+  bottom: 10px;
+  left: 10px;
+}
+/*# sourceMappingURL=Profile.css.map */

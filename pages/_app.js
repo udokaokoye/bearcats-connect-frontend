@@ -9,6 +9,7 @@ import '../styles/SearchArea.css'
 import '../styles/Auth.css'
 import '../styles/Pid.css'
 import '../styles/Comment.css'
+import '../styles/Profile.css'
 
 function MyApp({ Component, pageProps }) {
   return <Component {...pageProps} />

@@ -17,7 +17,10 @@ const Profile = () => {
         <div className="leftBar"></div>
 
         <div className="main_application profile_main">
-
+            <div className="profileInfoArea">
+              <div style={{background: `url(${user.cover})`}} className="coverArea"></div>
+              <div style={{background: `url(${user.img})`}} className="profilePicArea"></div>
+            </div>
         </div>
       </div>
     </div>
