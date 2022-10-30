@@ -1,16 +1,18 @@
 import { faChevronDown, faHome, faSearch, faTimes } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useRouter } from 'next/router'
 import React, {useState, useEffect} from 'react'
 
 const Navigation = ({setsearchActive, searchActive, user}) => {
+  const router = useRouter()
 
   
   return (
     <div className='navigation'>
         <div className="nav_logo_home">
-            <div className="nav_logo"> <div className="nav_img"></div> <span>Bearcats Connect</span></div>
+            <div onClick={() => router.push('/')} className="nav_logo"> <div className="nav_img"></div> <span>Bearcats Connect</span></div>
 
-            <button className='nav_home_btn'><FontAwesomeIcon icon={faHome} /> Home</button>
+           <a href="/"><button className='nav_home_btn'><FontAwesomeIcon icon={faHome} /> Home</button></a> 
         </div>
 
         <div className="nav_center_search">

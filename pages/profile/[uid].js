@@ -1,16 +1,27 @@
+import { useRouter } from "next/router";
 import React, {useState, useEffect} from "react";
 import LeftSideBar from "../../Components/LeftSideBar";
 import MiniProfileCard from "../../Components/MiniProfileCard";
 import Navigation from "../../Components/Navigation";
 import NewPost from "../../Components/NewPost";
 import Post from "../../Components/Post";
-import { getLoggedInUser } from "../../lib/swr-hooks";
+import { getLoggedInUser, getPosts, GetUser } from "../../lib/swr-hooks";
 
 const Profile = () => {
-    const [user, setuser] = useState()
+    const [userPosts, setuserPosts] = useState([])
+    const router = useRouter()
+    const [loggedInUser, setloggedInUser] = useState()
+    const userProfile = GetUser(router.query.uid).user;
+    const uid = router.query.uid;
+    const {posts, isValidating} = getPosts("userId", router.query.uid)
     useEffect(() => {
-      setuser(getLoggedInUser())
+        setloggedInUser(getLoggedInUser())
     }, [])
+
+    // useEffect(() => {
+    //   setuserPosts(posts);
+    // }, [isValidating])
+    
 
     const demoPosts = [
         {
@@ -205,19 +216,19 @@ const Profile = () => {
     
   return (
     <div className="main_container">
-        <Navigation user={user} />
+        <Navigation user={loggedInUser} />
       <div className="app_wrapper">
         <div className="leftBar">
-            <LeftSideBar user={user} />
+            <LeftSideBar user={loggedInUser} />
         </div>
 
         <div className="main_application profile_main">
             <div className="profileInfoArea">
-              <div style={{background: `url(${user?.cover})`}} className="coverArea"></div>
+              <div style={{background: `url(${loggedInUser?.cover})`}} className="coverArea"></div>
               <div  className="profilePicArea">
-                <div style={{background: `url(${user?.img})`}} className="profilePic"></div>
+                <div style={{background: `url(${loggedInUser?.img})`}} className="profilePic"></div>
                 <div className="UnameAndFollowCount">
-                <h3 className="username">{user?.fName + " " + user?.lName}</h3>
+                <h3 className="username">{loggedInUser?.fName + " " + loggedInUser?.lName}</h3>
                 <span className="major">Pre-Bussiness</span>
                 <div className="followCounts">
                 <span>32 Followers</span> |
@@ -225,7 +236,7 @@ const Profile = () => {
                 </div>
                 </div>
 
-                <button className="followBtn">+ Follow</button>
+                <button onClick={function (){ console.log(posts)}} className="followBtn">+ Follow</button>
               </div>
             </div>
             {/* <hr /> */}
@@ -267,11 +278,13 @@ const Profile = () => {
                 </div>
 
                 <div className="profilePostArea">
-                    <NewPost align={false} user={user} width={100}  />
+                    <NewPost align={true} user={loggedInUser} width={100}  />
                     <hr />
-                    {demoPosts.map((post, index) => (
+                    {isValidating ? (
+                            <h3>Loading...</h3>
+                    ) : posts?.map((post, index) => (
                         <React.Fragment key={index}>
-                            <Post width={100} align={false} post={post} />
+                            <Post width={100} align={true} post={post} />
                         </React.Fragment>
                     ))}
                 </div>

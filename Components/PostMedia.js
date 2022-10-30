@@ -7,7 +7,7 @@ const PostMedia = ({fileType, files, orientation}) => {
 
     if (files.length  < 3) {
         return (
-            <div className={`postMedia_container ${orientation?.length == 2 ? 'double_layout' : ''} ${orientation?.length == 3 ? 'tri_layout' : ''} ${orientation?.length == 2 && orientation[0] == "l" ? 'double_layout_l' : ''}${orientation?.length == 2 && orientation[0] == "p" ? 'double_layout_p' : ''} ${orientation.length == 1 && orientation[0] == "p" ? 'single_p' : 'single_l'} `}>
+            <div className={`postMedia_container ${files?.length == 2 ? 'double_layout' : ''} ${files?.length == 3 ? 'tri_layout' : ''} ${files?.length == 2 && orientation[0] == "l" ? 'double_layout_l' : ''}${files?.length == 2 && orientation[0] == "p" ? 'double_layout_p' : ''} ${files.length == 1 && orientation[0] == "p" ? 'single_p' : 'single_l'} `}>
         
                     {
                         files?.map((image, index) => (

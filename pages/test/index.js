@@ -7,7 +7,7 @@ const index = () => {
         this.JWT = data;
       };
     const getToken = async () => {
-        const res = await fetch("http://localhost/bearcats_connect/jwt.php", {
+        const res = await fetch("http://localhost/bearcats_connect/test.php", {
             method: "POST"
         })
 

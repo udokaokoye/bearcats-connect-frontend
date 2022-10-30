@@ -10,15 +10,15 @@ const Post = ({post, align=true, width=70}) => {
   return (
     <div style={{margin: align ? "0 auto" : '', width: `${width}%`}} className='postContainer'>
         <div className="post_profile_img">
-            <div style={{background: `url(${post.profilePic})`}} className="img"></div>
+            <div style={{background: `url(${post.profile_picture})`}} className="img"></div>
         </div>
         <div className="post_info">
         <div className="usernameAndMoreInfo">
-        <h4 className='username'>{post.name} <span className='userhandle'>@{post.username}</span></h4>
+        <h4 className='username'>{post.fName + " " + post.lName} <span className='userhandle'>@{post.username}</span></h4>
         <span>...</span>
         </div>
         <span className="post_time">{post.postTime}</span>
-        <p className="postCaption">{post.postCaption}</p>
+        <p className="postCaption">{post.caption}</p>
         <br />
         {post.images.length !== 0 ? (<PostMedia fileType={"image"} files={post.images} orientation={post.orientation} />) : ""}
         <br />

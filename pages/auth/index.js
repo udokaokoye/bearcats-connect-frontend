@@ -8,7 +8,6 @@ import React, { useState, useEffect } from "react";
 import AuthHeader from "../../Components/AuthHeader";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import { useCookies } from "react-cookie";
 import Cookies from 'js-cookie'
 import { getLoggedInUser, LoggedIn, verifyAuth } from "../../lib/swr-hooks";
 import { useRouter } from "next/router";
@@ -150,14 +149,14 @@ const Auth = () => {
       formData.append("username", signupUsername)
       formData.append("password", signupPassword)
 
-      fetch('http://localhost/bearcats_connect/helpers.php?helper=checkUsernamePassword', {
+      fetch('http://192.168.1.51/bearcats_connect/helpers.php?helper=checkUsernamePassword', {
       method: "POST", 
       body: formData
     }).then((res) => res.json()).then((data) => {
       console.log(data)
  
       if (data[0] !== true && data[1] !== true) {        
-        fetch("http://localhost/bearcats_connect/signup.php", {
+        fetch("http://192.168.1.51/bearcats_connect/signup.php", {
           method: "POST",
           body: formData
         }).then((res) => res.json()).then((data) => {
@@ -203,7 +202,7 @@ const Auth = () => {
   }
    formData.append("cover_picture", null)
 
-    fetch("http://localhost/bearcats_connect/signup.php?continueSignUp=true", {
+    fetch("http://192.168.1.51/bearcats_connect/signup.php?continueSignUp=true", {
       method: "POST",
       body: formData
     }).then((res) => res.json()).then((data) => {
@@ -225,7 +224,7 @@ const Auth = () => {
     } else {
         formData.append('user', loginEmailUsername)
         formData.append('password', loginPassword)
-        const url = loginEmailUsername.includes("@mail.uc.edu") ? "http://localhost/bearcats_connect/login.php" : "http://localhost/bearcats_connect/login.php?withUsername=1"
+        const url = loginEmailUsername.includes("@mail.uc.edu") ? "http://192.168.1.51/bearcats_connect/login.php" : "http://192.168.1.51/bearcats_connect/login.php?withUsername=1"
 
         fetch(url, {
           method: "POST",

@@ -93,14 +93,43 @@ const NewPostExpanded = ({
     );
   };
 
-  const previewImages = (files) => {
-    // setdemoState(URL.createObjectURL(files))
-    if (typeof window !== "undefined") {
-      //     const img = document.getElementById('hey');
-      // img.src = URL.createObjectURL(files)
-    //   console.log(uploadedImageList.length);
-    }
-  };
+  function compressImage(imgToCompress, newWidth=720, quality=0.7) {
+    // resizing the image
+
+    
+    const originalWidth = imgToCompress.width;
+    const originalHeight = imgToCompress.height;
+    const newHeight = Math.floor(originalHeight / originalWidth * newWidth)
+    
+    // const canvasWidth = originalWidth * resizingFactor;
+    // const canvasHeight = originalHeight * resizingFactor;
+
+    const canvas = document.createElement("canvas");
+    const context = canvas.getContext("2d");
+    
+    canvas.width = newWidth;
+    canvas.height = newHeight;
+    
+    context.drawImage(
+      imgToCompress,
+      0,
+      0,
+      newWidth,
+      newHeight
+    );
+    
+
+   return canvas.toBlob(
+      (blob) => {
+        if(blob) {
+          console.log(blob)
+          setuploadFiles((current) => [...current, blob])
+        };
+      },
+      "image/jpeg",
+      quality
+    );
+  }
 
   const imgprev = (ev) => {
     if (!ev.target.files) return; // Do nothing.
@@ -108,8 +137,11 @@ const NewPostExpanded = ({
         var objectUrl = URL.createObjectURL(file)
         setuploadedImageList((current) => [...current, objectUrl])
         setpreviewImageActive(true)
+
+
         var image = new Image();
         image.onload = function () {
+          compressImage(image, 720, 0.7)
             if (this.width > this.height) {
                 // console.log("l")
                 setorientations((current) => [...current, 'l'])
@@ -126,23 +158,24 @@ const NewPostExpanded = ({
         }
 
         image.src = objectUrl;
-        setuploadFiles((current) => [...current, file]);
 
     });
+
   };
 
   const submitPostHandler = () => {
     const formData = new FormData();    
-    formData.append("userId", 3)
+    formData.append("userId", user.userId)
     formData.append("caption", caption)
     formData.append("location", locationEntry)
     formData.append("orientation", orientations)
+    // formData.append(files[])
     if (typeof window !== "undefined") {
         // console.log(document.getElementById("imageUpload").files);
                 var ins = document.getElementById('imageUpload').files.length;
         if (ins > 0) {
-            for (var x = 0; x < ins; x++) {
-                formData.append("files[]", document.getElementById('imageUpload').files[x]);
+            for (var x = 0; x < uploadFiles.length; x++) {
+                formData.append("files[]", uploadFiles[x]);
             }
         }
     }

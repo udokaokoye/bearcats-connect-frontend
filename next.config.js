@@ -6,7 +6,7 @@ const nextConfig = {
     domains: [
       'media.istockphoto.com',
       "images.unsplash.com",
-      ""
+      "192.168.1.51"
     ]
   }
 }

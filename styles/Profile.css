@@ -168,7 +168,7 @@
   background-color: rgba(51, 51, 51, 0.271); /* Modern Browsers */
 }
 .profile_main .profileDetails .profilePostArea {
-  width: 60%;
+  width: 70%;
   height: auto;
   overflow-y: scroll;
 }
