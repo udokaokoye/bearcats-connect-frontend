@@ -4,6 +4,7 @@ import LeftSideBar from "../../Components/LeftSideBar";
 import MiniProfileCard from "../../Components/MiniProfileCard";
 import Navigation from "../../Components/Navigation";
 import NewPost from "../../Components/NewPost";
+import NoPostFound from "../../Components/NoPostFound";
 import Post from "../../Components/Post";
 import { getLoggedInUser, getPosts, GetUser } from "../../lib/swr-hooks";
 
@@ -13,7 +14,7 @@ const Profile = () => {
     const [loggedInUser, setloggedInUser] = useState()
     const userProfile = GetUser(router.query.uid).user;
     const uid = router.query.uid;
-    const {posts, isValidating} = getPosts("userId", router.query.uid)
+    const {posts, isValidating} = getPosts("userId", getLoggedInUser().userId)
     useEffect(() => {
         setloggedInUser(getLoggedInUser())
     }, [])
@@ -282,11 +283,13 @@ const Profile = () => {
                     <hr />
                     {isValidating ? (
                             <h3>Loading...</h3>
-                    ) : posts?.map((post, index) => (
+                    ) : posts?.length > 0 ? posts?.map((post, index) => (
                         <React.Fragment key={index}>
                             <Post width={100} align={true} post={post} />
                         </React.Fragment>
-                    ))}
+                    ))
+                    : <NoPostFound />
+                  }
                 </div>
             </div>
         </div>

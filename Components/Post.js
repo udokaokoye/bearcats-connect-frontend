@@ -4,8 +4,9 @@ import {} from '@fortawesome/fontawesome-svg-core'
 import React from 'react'
 import { faFacebookMessenger } from '@fortawesome/free-brands-svg-icons'
 import PostMedia from './PostMedia'
+import AddComment from './AddComment'
 
-const Post = ({post, align=true, width=70}) => {
+const Post = ({post, align=true, width=70, user}) => {
 
   return (
     <div style={{margin: align ? "0 auto" : '', width: `${width}%`}} className='postContainer'>
@@ -22,6 +23,8 @@ const Post = ({post, align=true, width=70}) => {
         <br />
         {post.images.length !== 0 ? (<PostMedia fileType={"image"} files={post.images} orientation={post.orientation} />) : ""}
         <br />
+
+        <AddComment user={user} pid={post.id} />
         <br />
 
             <div className="post_action_btns">

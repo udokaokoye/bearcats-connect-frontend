@@ -131,6 +131,13 @@ const NewPostExpanded = ({
     );
   }
 
+  function blobToFile(theBlob, fileName){
+    //A Blob() is almost a File() - it's just missing the two properties below which we will add
+    theBlob.lastModifiedDate = new Date();
+    theBlob.name = fileName;
+    return theBlob;
+}
+
   const imgprev = (ev) => {
     if (!ev.target.files) return; // Do nothing.
     [...ev.target.files].forEach((file) => {
@@ -164,21 +171,28 @@ const NewPostExpanded = ({
   };
 
   const submitPostHandler = () => {
+    
     const formData = new FormData();    
     formData.append("userId", user.userId)
     formData.append("caption", caption)
     formData.append("location", locationEntry)
     formData.append("orientation", orientations)
+
     // formData.append(files[])
     if (typeof window !== "undefined") {
         // console.log(document.getElementById("imageUpload").files);
-                var ins = document.getElementById('imageUpload').files.length;
-        if (ins > 0) {
+                var ins = document.getElementById('imageUpload').files;
+        if (ins.length > 0) {
             for (var x = 0; x < uploadFiles.length; x++) {
-                formData.append("files[]", uploadFiles[x]);
+                formData.append("files[]", ins[x]);
             }
+            // console.log(new File([uploadFiles[0]], "bConnect", {type: uploadFiles[0].type}))
         }
+        
     }
+
+    // console.log(uploadFiles);
+    // return;
     
 
     fetch('http://localhost/bearcats_connect/posts.php', {

@@ -216,9 +216,9 @@ export default function Home() {
               <br />
               {feedValidating ? (
                 <h3>Loading...</h3>
-              ) : feed.map((post, index) => (
+              ) : feed?.map((post, index) => (
                 <React.Fragment key={index}>
-                  <Post post={post} />
+                  <Post user={user} post={post} />
                 </React.Fragment>
               ))}
             </React.Fragment>

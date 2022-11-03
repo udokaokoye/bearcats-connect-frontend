@@ -10,6 +10,8 @@ import '../styles/Auth.css'
 import '../styles/Pid.css'
 import '../styles/Comment.css'
 import '../styles/Profile.css'
+import '../styles/NoPostFound.css'
+import '../styles/addComment.css'
 
 function MyApp({ Component, pageProps }) {
   return <Component {...pageProps} />

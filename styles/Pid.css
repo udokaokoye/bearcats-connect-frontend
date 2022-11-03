@@ -2,39 +2,28 @@
   width: 100%;
   height: 100vh;
   margin-top: 0px;
-  background: white;
-  display: -webkit-box;
-  display: -ms-flexbox;
+  background: rgb(255, 255, 255);
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  justify-content: space-between;
 }
-
 .pid_application .mediaContainer {
   width: 78%;
   height: 100%;
   background: #000;
 }
-
 .pid_application .postInfoContainer {
   width: 22%;
   height: 100%;
   overflow-y: scroll;
 }
-
 .pid_application .postInfoContainer .AuthorCaption {
   padding: 10px;
 }
-
 .pid_application .postInfoContainer .AuthorCaption .author {
   width: 100%;
   height: 50px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
 }
-
 .pid_application .postInfoContainer .AuthorCaption .author .authorImg {
   width: 50px;
   height: 50px;
@@ -44,79 +33,57 @@
   background-size: cover !important;
   background-repeat: no-repeat !important;
 }
-
 .pid_application .postInfoContainer .AuthorCaption .author .authorName {
   margin-left: 10px;
   margin-top: 5px;
 }
-
 .pid_application .postInfoContainer .AuthorCaption .author .authorName p {
   font-family: Arial, Helvetica, sans-serif;
   font-weight: 300;
 }
-
 .pid_application .postInfoContainer .AuthorCaption .author .authorName .postDate {
   font-size: 12px;
-  color: #414141;
+  color: rgb(65, 65, 65);
 }
-
 .pid_application .postInfoContainer .AuthorCaption .author .moreOptions {
   margin-left: auto;
 }
-
 .pid_application .postInfoContainer .AuthorCaption .postCaption {
   margin-top: 20px;
   margin-bottom: 20px;
-  font-family: 'Raleway';
+  font-family: "Raleway";
   font-size: 17px;
 }
-
 .pid_application .postInfoContainer .AuthorCaption .reactionsComments {
   margin-top: 15px;
   margin-bottom: 15px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  justify-content: space-between;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 15px;
-  color: #333333;
+  color: rgb(51, 51, 51);
 }
-
 .pid_application .postInfoContainer .AuthorCaption .reactionsComments span {
   cursor: pointer;
 }
-
 .pid_application .postInfoContainer .AuthorCaption .reactComment {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   margin-top: 10px;
   margin-bottom: 10px;
 }
-
 .pid_application .postInfoContainer .AuthorCaption .reactComment .reactBtns {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
   font-size: 15px;
-  color: #414141;
+  color: rgb(65, 65, 65);
 }
-
 .pid_application .postInfoContainer .AuthorCaption .reactComment .reactBtns .like {
   margin-right: 30px;
   cursor: pointer;
 }
-
 .pid_application .postInfoContainer .AuthorCaption .reactComment .reactBtns .comment {
   cursor: pointer;
 }
-
 .pid_application .postInfoContainer .AuthorCaption .reactComment .loggedinUserProfile {
   width: 30px;
   height: 30px;
@@ -126,34 +93,22 @@
   border-radius: 50%;
   margin-left: auto;
 }
-
 .pid_application .postInfoContainer .sortBtn {
   width: 100%;
   padding-right: 20px;
   margin-left: auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: end;
-      -ms-flex-align: end;
-          align-items: flex-end;
-  -webkit-box-pack: right;
-      -ms-flex-pack: right;
-          justify-content: right;
+  align-items: flex-end;
+  justify-content: right;
   cursor: pointer;
 }
-
 .pid_application .postInfoContainer .sortBtn span {
   margin-right: 5px;
 }
-
 .pid_application .postInfoContainer .commentEntry {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   padding: 10px;
 }
-
 .pid_application .postInfoContainer .commentEntry .userImg {
   width: 40px;
   height: 40px;
@@ -163,16 +118,14 @@
   background-size: cover !important;
   background-repeat: no-repeat !important;
 }
-
 .pid_application .postInfoContainer .commentEntry .commentInput {
   margin-left: 10px;
-  background: #e0e0e0;
+  background: rgb(224, 224, 224);
   padding: 10px;
   width: 80%;
   height: 40px;
   border-radius: 10px;
 }
-
 .pid_application .postInfoContainer .commentEntry .commentInput .cmtInput {
   width: 100%;
   height: 100%;
@@ -183,7 +136,6 @@
   font-size: 14px;
   overflow-y: visible;
 }
-
 .pid_application .postInfoContainer .commentEntry .commentInput .cmtInput:focus {
   outline: none;
 }
@@ -196,18 +148,11 @@
   top: 10px;
   left: 10px;
   z-index: 1;
-  background: #9c9c9c;
-  display: -webkit-box;
-  display: -ms-flexbox;
+  background: rgb(156, 156, 156);
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: center;
+  align-items: center;
   border-radius: 50%;
   font-size: 20px;
   cursor: pointer;
-}
-/*# sourceMappingURL=Pid.css.map */
+}/*# sourceMappingURL=Pid.css.map */
