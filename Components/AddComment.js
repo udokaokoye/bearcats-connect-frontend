@@ -3,19 +3,21 @@ import React, {useState, useEffect} from 'react'
 const AddComment = ({user, pid}) => {
     const [comment, setcomment] = useState('')
 
-useEffect(() => {
-    if (typeof window !== "undefined") {
-        document.getElementById('commentInput')?.addEventListener("keydown", (e) => {
-            if (e.code === "Enter") {
-                return console.log("ENTER")
-            }
-        })
-    }
-}, [])
+if (typeof window !== "undefined") {
+    document.getElementById('commentInput')?.addEventListener("keydown", (e) => {
+        if (e.code === 13) {
+            handleSubmmitComment()
+        }
+    })
+    // document.getElementById('commentInput')?.addEventListener("keydown", () => console.log('removed'))
+}
 
 
 
-   const handleSubmmitComment = () => {
+   const handleSubmmitComment = (e) => {
+
+    if (e.key === 'Enter') {
+
         const formData = new FormData();
         formData.append('comment', comment)
         formData.append('user_id', user.userId)
@@ -34,12 +36,13 @@ useEffect(() => {
             console.log("NO COMMENT")
         }
     }
+    }
 
   return (
     <div className='addCommentContainer'>
         <div style={{background: `url(${user.img})`}} className="userProfilePic"></div>
         <div className="commentInput">
-            <input  id='commentInput' onChange={(e) => setcomment(e.target.value)} value={comment} type="text" placeholder='Write a comment...' />
+            <input  id='commentInput' onKeyDown={(e) => handleSubmmitComment(e)} onChange={(e) => setcomment(e.target.value)} value={comment} type="text" placeholder='Write a comment...' />
         </div>
     </div>
   )
