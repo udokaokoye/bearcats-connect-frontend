@@ -14,6 +14,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState, useEffect, useCallback } from "react";
 // import Image from "next/image";
 import PostMedia from "./PostMedia";
+import Cookies from "js-cookie";
 
 const NewPostExpanded = ({
   setnewPostActive,
@@ -197,9 +198,16 @@ const NewPostExpanded = ({
 
     fetch('http://localhost/bearcats_connect/posts.php', {
         method: "POST",
-        body: formData
+        body: formData,
+        headers: {
+          'Authorization': `Bearer ${Cookies.get('user-token')}`
+       },
     }).then((res) => res.json()).then((data) => {
-        console.log(data)
+        if (data == 'Completed') {
+          alert("Posted")
+        } else {
+          console.log(data)
+        }
     })
   }
 

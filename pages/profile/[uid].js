@@ -225,12 +225,12 @@ const Profile = () => {
 
         <div className="main_application profile_main">
             <div className="profileInfoArea">
-              <div style={{background: `url(${loggedInUser?.cover})`}} className="coverArea"></div>
+              <div style={{background: `url(${userProfile?.cover_picture})`}} className="coverArea"></div>
               <div  className="profilePicArea">
-                <div style={{background: `url(${loggedInUser?.img})`}} className="profilePic"></div>
+                <div style={{background: `url(${userProfile?.profile_picture})`}} className="profilePic"></div>
                 <div className="UnameAndFollowCount">
-                <h3 className="username">{loggedInUser?.fName + " " + loggedInUser?.lName}</h3>
-                <span className="major">Pre-Bussiness</span>
+                <h3 className="username">{userProfile?.firstName + " " + userProfile?.lastName}</h3>
+                <span className="major">{userProfile?.major}</span>
                 <div className="followCounts">
                 <span>32 Followers</span> |
                 <span>102 Following</span>
@@ -285,7 +285,7 @@ const Profile = () => {
                             <h3>Loading...</h3>
                     ) : posts?.length > 0 ? posts?.map((post, index) => (
                         <React.Fragment key={index}>
-                            <Post width={100} align={true} post={post} />
+                            <Post width={100} align={true} post={post} user={loggedInUser} />
                         </React.Fragment>
                     ))
                     : <NoPostFound />

@@ -40,7 +40,7 @@ if (typeof window !== "undefined") {
 
   return (
     <div className='addCommentContainer'>
-        <div style={{background: `url(${user.img})`}} className="userProfilePic"></div>
+        <div style={{background: `url(${user?.img})`}} className="userProfilePic"></div>
         <div className="commentInput">
             <input  id='commentInput' onKeyDown={(e) => handleSubmmitComment(e)} onChange={(e) => setcomment(e.target.value)} value={comment} type="text" placeholder='Write a comment...' />
         </div>

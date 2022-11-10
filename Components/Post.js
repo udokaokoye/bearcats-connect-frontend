@@ -7,6 +7,7 @@ import PostMedia from './PostMedia'
 import AddComment from './AddComment'
 
 const Post = ({post, align=true, width=70, user}) => {
+  // console.log(post.images)
 
   return (
     <div style={{margin: align ? "0 auto" : '', width: `${width}%`}} className='postContainer'>
@@ -15,13 +16,13 @@ const Post = ({post, align=true, width=70, user}) => {
         </div>
         <div className="post_info">
         <div className="usernameAndMoreInfo">
-        <h4 className='username'>{post.fName + " " + post.lName} <span className='userhandle'>@{post.username}</span></h4>
+        <a href={`/profile/${post.user_id}`}><h4 className='username'>{post.fName + " " + post.lName} <span className='userhandle'>@{post.username}</span></h4></a>
         <span>...</span>
         </div>
         <span className="post_time">{post.postTime}</span>
-        <p className="postCaption">{post.caption}</p>
+        <a href={`/photos/${post.id}`}><p className="postCaption">{post.caption}</p></a>
         <br />
-        {post.images.length !== 0 ? (<PostMedia fileType={"image"} files={post.images} orientation={post.orientation} />) : ""}
+        {post.images.length !== 0 ? (<a href={`/photos/${post.id}`}><PostMedia fileType={"image"} files={post.images} orientation={post.orientation} /> </a>) : ""}
         <br />
 
         <AddComment user={user} pid={post.id} />

@@ -6,7 +6,7 @@ import NewPost from "../Components/NewPost";
 import NewPostExpanded from "../Components/NewPostExpanded";
 import Post from "../Components/Post";
 import SearchArea from "../Components/SearchArea";
-import { getFeed, getLoggedInUser, getPosts, verifyAuth } from "../lib/swr-hooks";
+import { getFeed, getLoggedInUser, verifyAuth } from "../lib/swr-hooks";
 import styles from "../styles/Home.module.css";
 
 export default function Home() {
@@ -218,7 +218,7 @@ export default function Home() {
                 <h3>Loading...</h3>
               ) : feed?.map((post, index) => (
                 <React.Fragment key={index}>
-                  <Post user={user} post={post} />
+                 <Post user={user} post={post} />
                 </React.Fragment>
               ))}
             </React.Fragment>
