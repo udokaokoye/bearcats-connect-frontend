@@ -8,7 +8,7 @@
          height: 40px;
          border-radius: 50%;
          background: black;
-         background-position: center !important;
+         background-position: top !important;
          background-size: cover !important;
          background-repeat: no-repeat  !important;
     }
@@ -25,12 +25,39 @@
 
         .comment_user_name {
             font-family: Arial, Helvetica, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            span {
+                cursor: pointer;
+                font-size: .9375rem;
+                // font-weight: 300;
+
+                &:last-child {
+                    // display: none;
+                    .tooltipdots {
+                        &:hover{
+                            font-weight: bolder;
+                            }
+                    }
+                }
+            }
+
+
+        }
+        .toolTipCont {
+            position: absolute;
+            right: 5px;
+            z-index: 1;
+            display: none;
         }
 
         .user_comment {
-            font-size: 15px;
+            font-size: .9375rem;
             font-family: 'Lato';
             word-wrap: break-word;
+            margin-top: 5px;
         }
 
         .raction_cont {
@@ -47,6 +74,20 @@
         .view_reply {
             font-size: 13px;
             color: red;
+            cursor: pointer;
+        }
+        .replyBreaker{
+            background-color:#0202021c;
+            color:#07070727;
+            transform:rotate(90deg);
+            width: 25px;
+            margin: 25px 0px;
+            // border:2px;
+        }
+
+        .replyCommentDiv {
+            margin-top: 25px;
+
         }
     }
 }

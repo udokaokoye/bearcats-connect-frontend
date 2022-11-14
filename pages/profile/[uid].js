@@ -6,7 +6,7 @@ import Navigation from "../../Components/Navigation";
 import NewPost from "../../Components/NewPost";
 import NoPostFound from "../../Components/NoPostFound";
 import Post from "../../Components/Post";
-import { getLoggedInUser, getPosts, GetUser } from "../../lib/swr-hooks";
+import { followUser, getLoggedInUser, getPosts, GetUser } from "../../lib/swr-hooks";
 
 const Profile = () => {
     const [userPosts, setuserPosts] = useState([])
@@ -14,7 +14,7 @@ const Profile = () => {
     const [loggedInUser, setloggedInUser] = useState()
     const userProfile = GetUser(router.query.uid).user;
     const uid = router.query.uid;
-    const {posts, isValidating} = getPosts("userId", getLoggedInUser().userId)
+    const {posts, isValidating} = getPosts("userId", uid)
     useEffect(() => {
         setloggedInUser(getLoggedInUser())
     }, [])
@@ -212,7 +212,10 @@ const Profile = () => {
             imageUrl: "https://images.unsplash.com/photo-1464962634408-5970d4f0614d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
         }
     ]
-    
+
+    const followUserHandler = () => {
+      followUser(loggedInUser?.userId, userProfile?.followers.followers, userProfile?.id)
+    }
 
     
   return (
@@ -232,12 +235,16 @@ const Profile = () => {
                 <h3 className="username">{userProfile?.firstName + " " + userProfile?.lastName}</h3>
                 <span className="major">{userProfile?.major}</span>
                 <div className="followCounts">
-                <span>32 Followers</span> |
-                <span>102 Following</span>
+                <span>{userProfile?.followers?.count} Follower{userProfile?.followers?.count > 1 ? 's' : ''}</span> |
+                <span>{userProfile?.following?.count} Following</span>
                 </div>
                 </div>
-
-                <button onClick={function (){ console.log(posts)}} className="followBtn">+ Follow</button>
+                
+                {userProfile?.id !== loggedInUser?.userId ? (
+                  <button onClick={() => followUserHandler()} className="followBtn">{userProfile?.followers?.followers.includes(loggedInUser?.userId) ? 'Unfollow' : '+ Follow'}</button>
+                ) : (
+                  <button onClick={() => alert("do something later")} className="followBtn">Edit Profile</button>
+                )}
               </div>
             </div>
             {/* <hr /> */}
@@ -279,8 +286,12 @@ const Profile = () => {
                 </div>
 
                 <div className="profilePostArea">
-                    <NewPost align={true} user={loggedInUser} width={100}  />
-                    <hr />
+                    {uid == loggedInUser?.userId ? (
+                      <>
+                        <NewPost align={true} user={loggedInUser} width={100}  />
+                        <hr />
+                      </>
+                    ) : ''}
                     {isValidating ? (
                             <h3>Loading...</h3>
                     ) : posts?.length > 0 ? posts?.map((post, index) => (

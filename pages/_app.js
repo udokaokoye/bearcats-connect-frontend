@@ -12,6 +12,7 @@ import '../styles/Comment.css'
 import '../styles/Profile.css'
 import '../styles/NoPostFound.css'
 import '../styles/addComment.css'
+import '../styles/toolTip.css'
 
 function MyApp({ Component, pageProps }) {
   return <Component {...pageProps} />

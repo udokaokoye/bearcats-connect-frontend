@@ -128,8 +128,9 @@
                         margin-left: 10px;
                         margin-top: 5px;
                         p {
+                            font-size: .9375rem;
                             font-family: Arial, Helvetica, sans-serif;
-                            font-weight: 300;
+                            font-weight: bold;
                         }
                         .postDate {
                             font-size: 12px;
@@ -146,7 +147,7 @@
                     margin-top: 20px;
                     margin-bottom: 20px;
                     font-family: 'Raleway';
-                    font-size: 17px;
+                    font-size: .9375rem;
                 }
 
                 .reactionsComments {
@@ -166,7 +167,10 @@
                 .reactComment {
                     display: flex;
                     margin-top: 10px;
-                    margin-bottom: 10px;
+                    // margin-bottom: 10px;
+                    border-top: 1px solid #3535352c;
+                    border-bottom: 1px solid #3535352c;
+                    padding: 10px 0;
 
                     .reactBtns {
                         display: flex;
@@ -206,6 +210,11 @@
                 span {
                     margin-right: 5px;
                 }
+            }
+            
+            .noComments {
+                text-align:  center;
+                margin: 20px 0px;
             }
 
             .commentEntry { 

@@ -15,6 +15,7 @@ import React, { useState, useEffect, useCallback } from "react";
 // import Image from "next/image";
 import PostMedia from "./PostMedia";
 import Cookies from "js-cookie";
+import MiniProfileCard from '../Components/MiniProfileCard'
 
 const NewPostExpanded = ({
   setnewPostActive,
@@ -27,6 +28,11 @@ const NewPostExpanded = ({
   const [previewImageActive, setpreviewImageActive] = useState(false)
   //   const [demoState, setdemoState] = useState([]);
   const [uploadedImageList, setuploadedImageList] = useState([]);
+  const [continueTagListen, setcontinueTagListen] = useState(false);
+  const [searchResult, setsearchResult] = useState([])
+  const [selectedTag, setselectedTag] = useState([])
+  const [searchPhrase, setsearchPhrase] = useState('')
+  const [tagIsSelected, settagIsSelected] = useState(false)
 
 //   !INPUT STATES
   const [locationEntry, setlocationEntry] = useState("");
@@ -192,9 +198,6 @@ const NewPostExpanded = ({
         
     }
 
-    // console.log(uploadFiles);
-    // return;
-    
 
     fetch('http://localhost/bearcats_connect/posts.php', {
         method: "POST",
@@ -210,6 +213,40 @@ const NewPostExpanded = ({
         }
     })
   }
+
+  useEffect(() => {
+    setcontinueTagListen(false)
+    // ! This wont work because we are displaying it in a terxtbox
+    // setcaption(caption.replace(/\d+/, searchPhrase => <span className="tagUser"> {searchPhrase} </span> ))
+    console.log('effect block')
+  }, [selectedTag])
+  
+
+  const handleTagUserListener = (e) => {
+    if(e.key === '@') {
+      console.log("tag user!!")
+      setcontinueTagListen(true)
+    }
+    // console.log(continueTagListen)
+
+    if (continueTagListen) {
+      if (e.code === 'Space') {
+        console.log('space :(')
+        setcontinueTagListen(false)
+      } else {
+        const phrase = e.target.value.split(/@(.*)/)[1]
+        if (phrase !== undefined) {
+          fetch(`http://localhost/bearcats_connect/tagSearch.php?phrase=${phrase}`).then((res) => res.json()).then((data) => {
+            // console.log(data)
+            setsearchResult(data)
+          })
+        }
+        // ! show tag user pop up post and start searching users
+      }
+    }
+  }
+
+
 
 
   // !Create a function that clearss all state when we close the add post modal.
@@ -246,10 +283,26 @@ const NewPostExpanded = ({
       >
         <textarea
           //   contentEditable={true}
+          value={caption}
           onChange={(e) => setcaption(e.target.value)}
           className="post_entry_field"
           placeholder={`what's on your mind, ${user?.fName}?`}
+          onKeyDown={(e) => handleTagUserListener(e)}
         ></textarea>
+
+        {continueTagListen ? (
+                    <div className="searchUserPopup">
+                        {searchResult.length > 0 ? searchResult.map((search) => (
+                          <div onClick={() => {
+                            setselectedTag([search])
+                            settagIsSelected(true)
+                          }}>
+                          <MiniProfileCard name={search.firstName + " " + search.lastName} major={search.major} imageUrl={search.profile_picture} showFollow={false} username={search.username} withUsername size='small' />
+                          <br />
+                          </div>
+                        )) : ''}
+                    </div>
+         ) : ''}
       </div>
 
       {/* THIS WILL SERVE AS AN AREA FOR ALL OTHER POST OPTIONS, THISS WILL CHANGE BASED ON WHAT STATE IS ACTIVE */}
@@ -285,7 +338,6 @@ const NewPostExpanded = ({
           multiple
           onChange={(e) => imgprev(e)}
         />
-
 
       </div>
 

@@ -110,8 +110,9 @@
   margin-top: 5px;
 }
 .pid_application .postInfoContainer .AuthorCaption .author .authorName p {
+  font-size: 0.9375rem;
   font-family: Arial, Helvetica, sans-serif;
-  font-weight: 300;
+  font-weight: bold;
 }
 .pid_application .postInfoContainer .AuthorCaption .author .authorName .postDate {
   font-size: 12px;
@@ -124,7 +125,7 @@
   margin-top: 20px;
   margin-bottom: 20px;
   font-family: "Raleway";
-  font-size: 17px;
+  font-size: 0.9375rem;
 }
 .pid_application .postInfoContainer .AuthorCaption .reactionsComments {
   margin-top: 15px;
@@ -141,7 +142,9 @@
 .pid_application .postInfoContainer .AuthorCaption .reactComment {
   display: flex;
   margin-top: 10px;
-  margin-bottom: 10px;
+  border-top: 1px solid rgba(53, 53, 53, 0.1725490196);
+  border-bottom: 1px solid rgba(53, 53, 53, 0.1725490196);
+  padding: 10px 0;
 }
 .pid_application .postInfoContainer .AuthorCaption .reactComment .reactBtns {
   display: flex;
@@ -176,6 +179,10 @@
 }
 .pid_application .postInfoContainer .sortBtn span {
   margin-right: 5px;
+}
+.pid_application .postInfoContainer .noComments {
+  text-align: center;
+  margin: 20px 0px;
 }
 .pid_application .postInfoContainer .commentEntry {
   display: flex;

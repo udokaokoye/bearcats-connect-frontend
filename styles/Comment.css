@@ -8,7 +8,7 @@
   height: 40px;
   border-radius: 50%;
   background: black;
-  background-position: center !important;
+  background-position: top !important;
   background-size: cover !important;
   background-repeat: no-repeat !important;
 }
@@ -23,11 +23,28 @@
 }
 .comment-container .commentDetails .comment_user_name {
   font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.comment-container .commentDetails .comment_user_name span {
+  cursor: pointer;
+  font-size: 0.9375rem;
+}
+.comment-container .commentDetails .comment_user_name span:last-child .tooltipdots:hover {
+  font-weight: bolder;
+}
+.comment-container .commentDetails .toolTipCont {
+  position: absolute;
+  right: 5px;
+  z-index: 1;
+  display: none;
 }
 .comment-container .commentDetails .user_comment {
-  font-size: 15px;
+  font-size: 0.9375rem;
   font-family: "Lato";
   word-wrap: break-word;
+  margin-top: 5px;
 }
 .comment-container .commentDetails .raction_cont {
   margin-top: 10px;
@@ -42,4 +59,15 @@
 .comment-container .commentDetails .view_reply {
   font-size: 13px;
   color: red;
+  cursor: pointer;
+}
+.comment-container .commentDetails .replyBreaker {
+  background-color: rgba(2, 2, 2, 0.1098039216);
+  color: rgba(7, 7, 7, 0.1529411765);
+  transform: rotate(90deg);
+  width: 25px;
+  margin: 25px 0px;
+}
+.comment-container .commentDetails .replyCommentDiv {
+  margin-top: 25px;
 }/*# sourceMappingURL=Comment.css.map */

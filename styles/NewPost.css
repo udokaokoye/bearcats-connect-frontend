@@ -127,6 +127,20 @@
 }
 .newPostExpandedContainer .post_entry {
   margin-top: 20px;
+  position: relative;
+}
+.newPostExpandedContainer .post_entry .searchUserPopup {
+  position: absolute;
+  width: 200px;
+  height: 210px;
+  background: rgb(236, 236, 236);
+  top: 40px;
+  border-radius: 10px;
+  border: 1px solid rgba(159, 159, 159, 0.454);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px;
 }
 .newPostExpandedContainer .post_entry_field {
   width: 100%;
