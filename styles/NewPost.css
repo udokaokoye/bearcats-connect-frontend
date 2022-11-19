@@ -166,6 +166,11 @@
 .newPostExpandedContainer .post_entry_field:focus {
   outline: none;
 }
+.newPostExpandedContainer .post_entry_field .tagUser {
+  color: red !important;
+  font-weight: bold !important;
+  font-size: 13px;
+}
 .newPostExpandedContainer .addImageSection {
   width: 100%;
   height: 200px;
@@ -425,10 +430,6 @@
 }
 .newPostExpandedContainer .addPostOptions .postOptions .addImage {
   color: green;
-  font-weight: bold;
-}
-.newPostExpandedContainer .addPostOptions .postOptions .tagUser {
-  color: blue;
   font-weight: bold;
 }
 .newPostExpandedContainer .addPostOptions .postOptions .smile {

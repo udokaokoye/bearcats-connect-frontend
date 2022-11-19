@@ -51,6 +51,14 @@
                 }
             }
         }
+        .postLocation {
+            margin-top: 5px;
+            font-size: .8375rem;
+
+            .locationIcon {
+                color: rgb(169, 25, 25);
+            }
+        }
         .post_time {
             color: rgb(118, 118, 118);
             font-size: 12px;
@@ -62,6 +70,14 @@
             color: rgb(38, 38, 38);
             margin-top: 20px;
             width: 100% !important;
+
+            .taggedUser {
+                font-weight: bolder;
+                // background: rgba(255, 0, 0, 0.406);
+                color: rgba(255, 0, 0, 0.624);
+                // padding: 3px;
+                // color: red;
+            }
         }
 
         .post_action_btns {

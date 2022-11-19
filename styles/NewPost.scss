@@ -190,6 +190,12 @@
     &:focus {
       outline: none;
     }
+
+    .tagUser {
+      color: red !important;
+      font-weight: bold !important;
+      font-size: 13px;
+    }
   }
 
   .addImageSection {
@@ -495,10 +501,7 @@
         font-weight: bold;
       }
 
-      .tagUser {
-        color: blue;
-        font-weight: bold;
-      }
+
 
       .smile {
         color: rgb(255, 140, 0);

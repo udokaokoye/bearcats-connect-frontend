@@ -218,7 +218,7 @@ export default function Home() {
                 <h3>Loading...</h3>
               ) : feed?.map((post, index) => (
                 <React.Fragment key={index}>
-                 <Post user={user} post={post.post} comment={post.comments} />
+                 <Post user={user} post={post.post} comments={post.comments} tags={post.tags} />
                 </React.Fragment>
               ))}
             </React.Fragment>

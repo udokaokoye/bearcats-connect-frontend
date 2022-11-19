@@ -31,8 +31,9 @@ const NewPostExpanded = ({
   const [continueTagListen, setcontinueTagListen] = useState(false);
   const [searchResult, setsearchResult] = useState([])
   const [selectedTag, setselectedTag] = useState([])
-  const [searchPhrase, setsearchPhrase] = useState('')
+  const [searchPhrase, setsearchPhrase] = useState(null)
   const [tagIsSelected, settagIsSelected] = useState(false)
+  const [tagCounter, settagCounter] = useState(0)
 
 //   !INPUT STATES
   const [locationEntry, setlocationEntry] = useState("");
@@ -89,7 +90,10 @@ const NewPostExpanded = ({
     },
   ];
   const [locationList, setlocationList] = useState(initialLocationList);
-
+  var captionInput
+if (typeof window !== "undefined") {
+   captionInput = document.getElementById('caption_field')?.innerHTML
+}
 
   const locationListFilter = (e) => {
     // alert(e.target.value)
@@ -178,13 +182,18 @@ const NewPostExpanded = ({
   };
 
   const submitPostHandler = () => {
+    var userCaption = document.getElementById('caption_field').textContent
+    selectedTag.forEach((e,index) => {
+      userCaption = userCaption.replace(`~${e.firstName} ${e.lastName}~`, `@${e.id}`)
+      setcaption(userCaption)
+    });
     
     const formData = new FormData();    
     formData.append("userId", user.userId)
-    formData.append("caption", caption)
+    formData.append("caption", userCaption)
     formData.append("location", locationEntry)
     formData.append("orientation", orientations)
-
+    // formData.append('taggedUsers', selectedTag.length > 0 ? selectedTag : null)
     // formData.append(files[])
     if (typeof window !== "undefined") {
         // console.log(document.getElementById("imageUpload").files);
@@ -194,6 +203,12 @@ const NewPostExpanded = ({
                 formData.append("files[]", ins[x]);
             }
             // console.log(new File([uploadFiles[0]], "bConnect", {type: uploadFiles[0].type}))
+        }
+
+        if (selectedTag.length > 0) {
+          for (let i = 0; i < selectedTag.length; i++) {
+            formData.append('taggedUsers[]', selectedTag[i].id)
+          }
         }
         
     }
@@ -206,8 +221,10 @@ const NewPostExpanded = ({
           'Authorization': `Bearer ${Cookies.get('user-token')}`
        },
     }).then((res) => res.json()).then((data) => {
+      // console.log(data)
         if (data == 'Completed') {
           alert("Posted")
+          document.getElementById('caption_field').innerHTML = ''
         } else {
           console.log(data)
         }
@@ -217,25 +234,50 @@ const NewPostExpanded = ({
   useEffect(() => {
     setcontinueTagListen(false)
     // ! This wont work because we are displaying it in a terxtbox
-    // setcaption(caption.replace(/\d+/, searchPhrase => <span className="tagUser"> {searchPhrase} </span> ))
-    console.log('effect block')
+    const aa = document.getElementById('caption_field')
+    // const bb = "Hello"
+    if (searchPhrase !== null) {
+      // alert('not null')
+  //     var index = aa.innerHTML.indexOf(searchPhrase);
+  // if (index >= 0) { 
+  //    aa.innerHTML = document.getElementById('caption_field').innerHTML.split(searchPhrase).join('<span class="highlight">'+bb+'</span>');
+  // }
+
+  // return;
+  aa.innerHTML = aa.innerHTML.replace("@"+searchPhrase , `~<span class='tagUser'>${selectedTag[tagCounter]?.firstName} ${selectedTag[tagCounter]?.lastName}</span>~`)
+  // setcaption(aa.textContent.replace(`${selectedTag[tagCounter]?.firstName} ${selectedTag[tagCounter]?.lastName}`, `@${selectedTag[tagCounter]?.id}`))
+  // setcaption(aa.textContent)
+  settagCounter(tagCounter += 1)
+}
+// console.log(searchPhrase)
+    // console.log(searchResult)
+    // console.log(tagCounter)
+    setsearchPhrase(null)
   }, [selectedTag])
   
 
   const handleTagUserListener = (e) => {
+    setcaption(document.getElementById('caption_field').textContent)
     if(e.key === '@') {
-      console.log("tag user!!")
+      // console.log("tag user!!")
       setcontinueTagListen(true)
     }
     // console.log(continueTagListen)
 
     if (continueTagListen) {
       if (e.code === 'Space') {
-        console.log('space :(')
+        // console.log('space :(')
         setcontinueTagListen(false)
       } else {
-        const phrase = e.target.value.split(/@(.*)/)[1]
+        // .substring(capInp.indexOf('@') + 1)
+        const capInp = document.getElementById('caption_field').innerHTML
+        const neddle = '@'
+        const phrase = capInp.slice(capInp.lastIndexOf("@") + neddle.length);
+        // console.log(phrase);
+        // console.log(searchPhrase.length)
         if (phrase !== undefined) {
+          setsearchPhrase(phrase)
+          // return;
           fetch(`http://localhost/bearcats_connect/tagSearch.php?phrase=${phrase}`).then((res) => res.json()).then((data) => {
             // console.log(data)
             setsearchResult(data)
@@ -254,7 +296,7 @@ const NewPostExpanded = ({
   return (
     <div className="newPostExpandedContainer">
       <div className="header_bar">
-        <span className="headerTitle">Create Post</span>
+        <span onClick={() => console.log(caption)} className="headerTitle">Create Post</span>
         <div
           onClick={() => {
             setnewPostActive(false);
@@ -281,21 +323,27 @@ const NewPostExpanded = ({
         }}
         className="post_entry"
       >
-        <textarea
+        <div
           //   contentEditable={true}
-          value={caption}
-          onChange={(e) => setcaption(e.target.value)}
+          // value={caption}
+          // onChange={(e) => setcaption(e.target.value)}
           className="post_entry_field"
+          id="caption_field"
           placeholder={`what's on your mind, ${user?.fName}?`}
-          onKeyDown={(e) => handleTagUserListener(e)}
-        ></textarea>
+          onKeyUp={(e) => {
+            // setcaption(captionInput)
+            handleTagUserListener(e)
+          }}
+          // onKeyUp={(e) => setcaption(e.innerText)}
+          contentEditable
+        ></div>
 
         {continueTagListen ? (
                     <div className="searchUserPopup">
-                        {searchResult.length > 0 ? searchResult.map((search) => (
-                          <div onClick={() => {
-                            setselectedTag([search])
-                            settagIsSelected(true)
+                        {searchResult.length > 0 ? searchResult.map((search, index) => (
+                          <div key={index} onClick={() => {
+                            setselectedTag([...selectedTag, search])
+                            // settagIsSelected(true)
                           }}>
                           <MiniProfileCard name={search.firstName + " " + search.lastName} major={search.major} imageUrl={search.profile_picture} showFollow={false} username={search.username} withUsername size='small' />
                           <br />

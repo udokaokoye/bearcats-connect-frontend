@@ -49,6 +49,13 @@
   z-index: 1;
   display: none;
 }
+.postContainer .post_info .postLocation {
+  margin-top: 5px;
+  font-size: 0.8375rem;
+}
+.postContainer .post_info .postLocation .locationIcon {
+  color: rgb(169, 25, 25);
+}
 .postContainer .post_info .post_time {
   color: rgb(118, 118, 118);
   font-size: 12px;
@@ -59,6 +66,10 @@
   color: rgb(38, 38, 38);
   margin-top: 20px;
   width: 100% !important;
+}
+.postContainer .post_info .postCaption .taggedUser {
+  font-weight: bolder;
+  color: rgba(255, 0, 0, 0.624);
 }
 .postContainer .post_info .post_action_btns {
   display: flex;

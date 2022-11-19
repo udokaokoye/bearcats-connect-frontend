@@ -20,6 +20,7 @@ import { getLoggedInUser, getPost } from "../../lib/swr-hooks";
 import Image from "next/image";
 import AddComment from "../../Components/AddComment";
 import { mutate } from "swr";
+import Link from "next/link";
 
 const Photos = () => {
   const router = useRouter();
@@ -66,31 +67,35 @@ const Photos = () => {
     }
   };
   if (typeof window !== "undefined") {
-    useEffect(() => {
-      setTimeout(() => {
-        document.getElementById("lowerThirdImage").style.opacity = 0.6;
-      }, 5000);
-    }, []);
+    // useEffect(() => {
+    //   setTimeout(() => {
+    //     document.getElementById("lowerThirdImage").style.opacity = 0.6;
+    //   }, 5000);
+    // }, []);
 
-    // setTimeout(() => {
-    //       document.getElementById('lowerThirdImage').style.opacity = 0.6
+    // // setTimeout(() => {
+    // //       document.getElementById('lowerThirdImage').style.opacity = 0.6
+    // //     }, 5000);
+
+    // document
+    //   .getElementById("lowerThirdImage")
+    //   ?.addEventListener("mouseover", () => {
+    //     document.getElementById("lowerThirdImage").style.opacity = 1;
+    //     setTimeout(() => {
+    //       document.getElementById("lowerThirdImage").style.opacity = 0.6;
     //     }, 5000);
-
-    document
-      .getElementById("lowerThirdImage")
-      ?.addEventListener("mouseover", () => {
-        document.getElementById("lowerThirdImage").style.opacity = 1;
-        setTimeout(() => {
-          document.getElementById("lowerThirdImage").style.opacity = 0.6;
-        }, 5000);
-      });
+    //   });
   }
 
   return (
     <div className="main_container">
-      <div onClick={() => router.back()} className="closePostBtn">
-        <FontAwesomeIcon icon={faTimes} />
-      </div>
+      {/* <a href={`/#${pid}`}> */}
+        <div
+        onClick={() => router.back()} 
+        className="closePostBtn">
+          <FontAwesomeIcon icon={faTimes} />
+        </div>
+      {/* </a> */}
       <div className="pid_application">
         <div className="mediaContainer">
           <div className="mediaWrapper">
@@ -142,7 +147,7 @@ const Photos = () => {
               <div className="authorName">
                 <p
                   onClick={() => {
-                    console.log(postData);
+                    // console.log(postData);
                   }}
                 >
                   {postData?.fName} {postData?.lName}

@@ -9,10 +9,10 @@ const Comment = ({ comment, reply, user, postAuthorId }) => {
   const [showCommentInput, setshowCommentInput] = useState(false);
   const [commentAdded, setcommentAdded] = useState(0);
   const [showToolTip, setshowToolTip] = useState(false)
-  const {allComment, isValidating} = getComments(comment.post_id)
+  const {allComment, isValidating} = getComments(comment?.post_id)
   useEffect(() => {
     mutate(
-      `http://192.168.1.51/bearcats_connect/getPost.php?postId=${comment.post_id}`
+      `http://192.168.1.51/bearcats_connect/getPost.php?postId=${comment?.post_id}`
     );
   }, [commentAdded]);
 
@@ -31,17 +31,17 @@ const Comment = ({ comment, reply, user, postAuthorId }) => {
         <div className="radius_div">
           <span className="comment_user_name">
             <span>
-              {comment.firstName} {comment.lastName}
+              {comment?.firstName} {comment?.lastName}
             </span>{" "}
             <span onClick={() => setshowToolTip(!showToolTip)} style={{ position: "relative" }}>
               <span className="tooltipdots">...</span>
               <div style={{display: showToolTip ? 'block' : 'none'}} className="toolTipCont">
-                <Tooltip contentType={'comment'} content={[comment.id, comment.post_id]} owner={user?.userId == postAuthorId} />
+                <Tooltip contentType={'comment'} content={[comment?.id, comment?.post_id]} owner={user?.userId == postAuthorId} />
               </div>
             </span>
           </span>
 
-          <p className="user_comment">{comment.comment}</p>
+          <p className="user_comment">{comment?.comment}</p>
         </div>
         <div className="raction_cont">
           <span>Like</span>{" "}

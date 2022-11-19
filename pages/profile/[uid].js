@@ -9,7 +9,7 @@ import Post from "../../Components/Post";
 import { followUser, getLoggedInUser, getPosts, GetUser } from "../../lib/swr-hooks";
 
 const Profile = () => {
-    const [userPosts, setuserPosts] = useState([])
+    // const [userPosts, setuserPosts] = useState([])
     const router = useRouter()
     const [loggedInUser, setloggedInUser] = useState()
     const userProfile = GetUser(router.query.uid).user;
@@ -230,9 +230,9 @@ const Profile = () => {
             <div className="profileInfoArea">
               <div style={{background: `url(${userProfile?.cover_picture})`}} className="coverArea"></div>
               <div  className="profilePicArea">
-                <div style={{background: `url(${userProfile?.profile_picture})`}} className="profilePic"></div>
+                <div  style={{background: `url(${userProfile?.profile_picture})`}} className="profilePic"></div>
                 <div className="UnameAndFollowCount">
-                <h3 className="username">{userProfile?.firstName + " " + userProfile?.lastName}</h3>
+                <h3 onClick={() => console.log(userProfile?.followers)} className="username">{userProfile?.firstName + " " + userProfile?.lastName}</h3>
                 <span className="major">{userProfile?.major}</span>
                 <div className="followCounts">
                 <span>{userProfile?.followers?.count} Follower{userProfile?.followers?.count > 1 ? 's' : ''}</span> |
@@ -241,7 +241,7 @@ const Profile = () => {
                 </div>
                 
                 {userProfile?.id !== loggedInUser?.userId ? (
-                  <button onClick={() => followUserHandler()} className="followBtn">{userProfile?.followers?.followers.includes(loggedInUser?.userId) ? 'Unfollow' : '+ Follow'}</button>
+                  <button onClick={() => followUserHandler()} className="followBtn">{userProfile?.followers?.followers.map((fl) => fl.id).includes(loggedInUser?.userId) ? 'Unfollow' : '+ Follow'}</button>
                 ) : (
                   <button onClick={() => alert("do something later")} className="followBtn">Edit Profile</button>
                 )}
@@ -249,7 +249,7 @@ const Profile = () => {
             </div>
             {/* <hr /> */}
             <div className="actionOptions">
-                <span>Posts</span>
+                <span onClick={() => console.log(posts)}>Posts</span>
                 <span>About</span>
                 <span>Photos</span>
                 <span>Videos</span>
@@ -260,7 +260,7 @@ const Profile = () => {
                 <div className="profileOptions">
                     <div className="profilebio">
                         <h3 className="sectionHeader">Bio</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Natus rerum veniam saepe dolor iure nulla quia beatae, fugit minima excepturi?</p>
+                        <p>{userProfile?.bio}</p>
                     </div>
 
                     <div className="profileHobbies">
@@ -274,10 +274,10 @@ const Profile = () => {
 
                     <div className="profileFollowers">
                         <h3 className="sectionHeader">Followers</h3>
-                        {demoArray.slice(0, 3).map((demoUser, index) => (
+                        {userProfile?.followers?.followers.slice(0, 3).map((followingUser, index) => (
                             <React.Fragment key={index}>
                                 {/* <hr /> */}
-                                <MiniProfileCard name={demoUser.name} major={demoUser.major} imageUrl={demoUser.imageUrl} username={demoUser.imageUrl} />
+                                <MiniProfileCard name={followingUser.firstName + " " + followingUser.lastName} major={followingUser.major} imageUrl={followingUser.profile_picture} username={followingUser.username} />
                                 <br />
                             </React.Fragment>
                         ))}
@@ -296,7 +296,7 @@ const Profile = () => {
                             <h3>Loading...</h3>
                     ) : posts?.length > 0 ? posts?.map((post, index) => (
                         <React.Fragment key={index}>
-                            <Post width={100} align={true} post={post} user={loggedInUser} />
+                            <Post width={100} align={true} post={post.post} user={loggedInUser} comments={post.comments} tags={post.tags} />
                         </React.Fragment>
                     ))
                     : <NoPostFound />
